@@ -12,6 +12,20 @@ var expressValidator = require ('express-validator');
 var  sweetalert = require('sweetalert2');
 var app = express();
 
-var bodyParser = require ('body-parser')
+var bodyParser = require ('body-parser');
+const { config } = require('process');
 
-const 
+// Duong new coding start
+
+app.set('view engine','ejs');
+app.set('views','./views');
+app.use(express.static(__dirname+ '/public'));
+require('dotenv').config();
+app.get('/',(req,res)=>{
+    res.render('landingPage');
+    });
+
+app.listen(process.env.PORT, function(){
+    console.log(`Example app listening on port ${process.env.PORT}`)
+  });
+// Duong new coding end
