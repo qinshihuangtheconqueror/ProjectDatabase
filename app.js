@@ -24,6 +24,9 @@ require('dotenv').config();
 app.get('/',(req,res)=>{
     res.render('landingpage');
     });
+app.get('/login',(req,res)=>{
+    res.render('login');
+    });
 
 app.listen(process.env.PORT, function(){
     console.log(`Example app listening on port ${process.env.PORT}`)
