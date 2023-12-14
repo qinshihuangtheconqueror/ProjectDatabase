@@ -1,0 +1,95 @@
+.video{
+    margin-top:20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 15px;
+}
+
+.video-div{
+    cursor: pointer;
+}
+.videoandtime{
+    position: relative;
+}
+.video-div:hover{
+    box-shadow: 0 0 3px 3px #888888;
+    cursor:pointer;
+    border-radius: 10px;
+}
+.video-description{
+    display:grid;
+    grid-template-columns: 50px 1fr;
+}
+.video-time{
+    position: absolute;
+    background-color: black;
+    font-family: Arial;
+    font-size:13px;
+    color:white;
+    right:10px;
+    bottom:10px;
+}
+
+.thumnails{
+    width:100%;
+    border-radius:10px;
+}
+.logo-channel{
+    width: 30px;
+    height: 30px;
+    border:1px solid black;
+    border-radius: 50%;
+}
+/* .video-div{
+    margin-left: 2px;
+    margin-right: 2px;
+} */
+
+.video-title{
+    font-family: Arial;
+    font-size:15px;
+    /* width: 254px; */
+    font-weight: bold;
+    margin-bottom: 1px;
+    margin-top:1px;
+
+}
+.video-channel{
+    font-family: Arial;
+    font-size:13px;
+    margin-top: 3px;
+    margin-bottom: 1px;
+}
+.video-sub{
+    font-family: Arial;
+    font-size:12px;
+    margin-top: 3px;
+}
+.Doctors-Crud{
+    display: flex;
+}
+.Doctors-Crud-list{
+    margin: 10px;
+    display: flex;
+    margin: 10px;
+    border: 0px solid black;
+    padding: 7px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.doctor-details{
+  position: fixed;
+	background-color: rgba(0,0,0,0.6);
+	/* border:2px solid white; */
+	border-radius: 20px;
+	z-index: 1000;
+	/* inset: 1vh 1vh 1vh 1vh; */
+	inset: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;	
+	transform: scale(0.8);
+	pointer-events: none;
+	transition: 0.5s;
+}
