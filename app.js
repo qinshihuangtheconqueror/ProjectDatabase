@@ -22,7 +22,7 @@ app.set('views','./views');
 app.use(express.static(__dirname+ '/public'));
 require('dotenv').config();
 app.get('/',(req,res)=>{
-    res.render('landingPage');
+    res.render('admin');
     });
 
 app.listen(process.env.PORT, function(){
