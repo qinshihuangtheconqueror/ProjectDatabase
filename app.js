@@ -13,5 +13,3 @@ var  sweetalert = require('sweetalert2');
 var app = express();
 
 var bodyParser = require ('body-parser')
-
-const 
