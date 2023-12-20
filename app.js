@@ -35,6 +35,10 @@ app.get('/adminDoctors',(req,res)=>{
 app.get('/adminAnalyst',(req,res)=>{
     res.render('adminAnalyst');
     });
+app.get('/adminDoctors/in4',(req,res)=>{
+        res.render('adminDoctorIn4');
+    });
+
 app.listen(process.env.PORT, function(){
     console.log(`Example app listening on port ${process.env.PORT}`)
   });
