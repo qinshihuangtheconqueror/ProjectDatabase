@@ -7,7 +7,12 @@
 
 .video-div{
     cursor: pointer;
+    color: var(--dark);
+    background: var(--light);
+    border-radius: 10px;
+    padding:5px;
 }
+
 .videoandtime{
     position: relative;
 }
@@ -19,6 +24,9 @@
 .video-description{
     display:grid;
     grid-template-columns: 50px 1fr;
+}
+.video-title::before{
+    color: white;
 }
 .video-time{
     position: absolute;
@@ -76,6 +84,10 @@
     padding: 7px;
     border-radius: 12px;
     cursor: pointer;
+}
+.Doctors-Crud-list:hover{
+    box-shadow: 0 0 2px 2px grey;
+    transition: 0.3s;
 }
 .doctor-details{
     position: fixed;
