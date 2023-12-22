@@ -1,31 +1,42 @@
--- Create the Hospital_V01 database
-CREATE DATABASE Hospital_V01;
-GO
+-- Create the Hospital database
+CREATE DATABASE Hospital;
 
--- Use the Hospital_V01 database
-USE Hospital_V01;
-GO
+-- Use the Hospital database
+USE Hospital;
 
 CREATE TABLE Room (
     Room_ID INT PRIMARY KEY,
-    Room_name VARCHAR(255)
+    Name VARCHAR(255)
 );
 
 CREATE TABLE Department (
     Department_ID INT PRIMARY KEY,
-    Department_name VARCHAR(255),
-    Room_ID INT, 
-    FOREIGN KEY(Room_ID) REFERENCES Room(Room_ID)
+    Name VARCHAR(255),
+    Room_ID INT FOREIGN KEY REFERENCES Room(Room_ID)
 );
 
 CREATE TABLE `Position` (
-    `Position_ID` INT PRIMARY KEY,
-    `Department_ID` INT,
-    `Specialization` VARCHAR(255),
-    `Salary` INT,
-    FOREIGN KEY (`Department_ID`) REFERENCES `Department` (`Department_ID`)
+    Position_ID INT PRIMARY KEY,
+    Department_ID INT,
+    Specialization VARCHAR(255),
+    Salary INT,
+    FOREIGN KEY(Department_ID) REFERENCES Department(Department_ID)
 );
 
+CREATE TABLE Department (
+    Department_ID INT PRIMARY KEY,
+    Name VARCHAR(255),
+    Room_ID INT,
+    FOREIGN key(Room_ID) REFERENCES Room(Room_ID)
+);
+
+CREATE TABLE `Position` (
+    Position_ID INT PRIMARY KEY,
+    Department_ID INT,
+    Specialization VARCHAR(255),
+    Salary INT,
+    FOREIGN KEY(Department_ID) REFERENCES Department(Department_ID)
+);
 
 CREATE TABLE Staff (
     Staff_ID INT PRIMARY KEY,
@@ -36,10 +47,8 @@ CREATE TABLE Staff (
     DOB DATE,
     Gender CHAR(1),
     Email VARCHAR(255),
-    FOREIGN KEY (Position_ID) REFERENCES `Position` (Position_ID)
+    FOREIGN KEY(Position_ID) REFERENCES `Position`(Position_ID)
 );
-
-
 
 CREATE TABLE Patient (
     Patient_ID INT PRIMARY KEY,
@@ -52,7 +61,6 @@ CREATE TABLE Patient (
     Email VARCHAR(255)
 );
 
-
 CREATE TABLE Service (
     Service_ID INT PRIMARY KEY,
     Name VARCHAR(255),
@@ -61,16 +69,23 @@ CREATE TABLE Service (
 
 CREATE TABLE Supplier (
     Supplier_ID INT PRIMARY KEY,
-    Supplier_name VARCHAR(255),
+    Name VARCHAR(255),
     Phone INT,
-    Supplier_address VARCHAR(255),
+    Address VARCHAR(255),
     Email VARCHAR(255)
 );
 
 CREATE TABLE Medication (
     Medication_ID INT PRIMARY KEY,
-    Medication_name VARCHAR(255),
-    Medication_value INT,
+    Name VARCHAR(255),
+    Value INT,
+    Supplier_ID INT FOREIGN KEY REFERENCES Supplier(Supplier_ID),
+);
+
+CREATE TABLE Medication (
+    Medication_ID INT PRIMARY KEY,
+    Name VARCHAR(255),
+    Value INT,
     Supplier_ID INT,
     FOREIGN KEY (Supplier_ID) REFERENCES Supplier(Supplier_ID)
 );
@@ -81,23 +96,22 @@ CREATE TABLE Stock (
     Current_number INT,
     Room_ID INT,
     Update_Time DATE,
-    FOREIGN KEY (Medication_ID) REFERENCES Medication(Medication_ID),
-    FOREIGN KEY (Room_ID) REFERENCES Room(Room_ID)
+    FOREIGN KEY(Medication_ID) REFERENCES Medication(Medication_ID),
+    FOREIGN KEY(Room_ID) REFERENCES Room(Room_ID)
 );
 
 CREATE TABLE Permission (
     Permission_ID INT PRIMARY KEY,
     User_management INT,
-    Per_security INT,
-    Per_configuration INT,
+    Security INT,
+    Configuration INT,
     Trails_and_Logs INT
 );
 
 CREATE TABLE Account (
-    Account_ID INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    email varchar (100) NOT NULL,
+    Account_ID INT PRIMARY KEY,
+    Name VARCHAR(255),
+    Password VARCHAR(50),
     Permission_ID INT,
     Staff_ID INT,
     Patient_ID INT,
@@ -106,36 +120,42 @@ CREATE TABLE Account (
     FOREIGN KEY(Patient_ID) REFERENCES Patient(Patient_ID)
 );
 
-
 CREATE TABLE Stay (
     Stay_ID INT PRIMARY KEY,
-    Patient_ID INT FOREIGN KEY REFERENCES Patient(Patient_ID),
+    Patient_ID INT,
     Start_Day DATE,
     End_Day DATE,
-    Room_ID INT FOREIGN KEY REFERENCES Room(Room_ID)
+    Room_ID INT,
+    FOREIGN KEY (Patient_ID) REFERENCES Patient(Patient_ID),
+    FOREIGN KEY (Room_ID) REFERENCES Room(Room_ID)
 );
 
 CREATE TABLE Appointment (
     Appointment_ID INT PRIMARY KEY,
-    Patient_ID INT FOREIGN KEY REFERENCES Patient(Patient_ID),
-    Staff_ID INT FOREIGN KEY REFERENCES Staff(Staff_ID),
-    Service_ID INT FOREIGN KEY REFERENCES Service(Service_ID),
+    Patient_ID INT,
+    Staff_ID INT,
+    Service_ID INT,
     Start_Time DATE,
     End_Time DATE,
-    Stay_ID INT FOREIGN KEY REFERENCES Stay(Stay_ID),
+    Stay_ID INT,
     Diagnostic VARCHAR(1000),
-    Payment VARCHAR(255)
+    Payment VARCHAR(255),
+    FOREIGN KEY (Patient_ID) REFERENCES Patient(Patient_ID),
+    FOREIGN KEY (Staff_ID) REFERENCES Staff(Staff_ID),
+    FOREIGN KEY (Service_ID) REFERENCES Service(Service_ID),
+    FOREIGN KEY (Stay_ID) REFERENCES Stay(Stay_ID)
 );
-
 
 CREATE TABLE Bill (
     Appointment_ID INT,
-    Medication_ID INT FOREIGN KEY REFERENCES Medication(Medication_ID),
+    Medication_ID INT,
     Quantity INT,
-	CONSTRAINT PK_Bill PRIMARY KEY (Appointment_ID, Medication_ID)
+    CONSTRAINT PK_Bill PRIMARY KEY (Appointment_ID, Medication_ID),
+    FOREIGN KEY (Appointment_ID) REFERENCES Appointment(Appointment_ID),
+    FOREIGN KEY (Medication_ID) REFERENCES Medication(Medication_ID)
 );
 
----------------add the data------------------
+-- -------------add the data------------------
 -- Insert 10 records for Room
 INSERT INTO Room (Room_ID, Name)
 VALUES
@@ -149,6 +169,7 @@ VALUES
 (8, 'Room 302'),
 (9, 'Room 303'),
 (10, 'Room 401');
+
 INSERT INTO Department (Department_ID, Name, Room_ID)
 VALUES
 (1, 'Cardiology', 1),
@@ -158,7 +179,7 @@ VALUES
 (5, 'Pediatrics', 5);
 
 -- Insert 10 records for Position
-INSERT INTO Position (Position_ID, Department_ID, Specialization, Salary)
+INSERT INTO `Position` (Position_ID, Department_ID, Specialization, Salary)
 VALUES
 (1, 1, 'Cardiologist', 120000),
 (2, 2, 'Orthopedic Surgeon', 150000),
@@ -209,7 +230,6 @@ VALUES
 (5, 'Dental Cleaning', 50);
 
 
-
 -- Insert 5 records for Supplier
 INSERT INTO Supplier (Supplier_ID, Name, Phone, Address, Email)
 VALUES
@@ -245,29 +265,28 @@ VALUES
 
 -- Insert 5 records for Department
 
--- Insert 20 records for Stock
 INSERT INTO Stock (Stock_ID, Medication_ID, Current_number, Room_ID, Update_Time)
 VALUES
-(1, 1, 200, 1, GETDATE()),
-(2, 2, 150, 2, GETDATE()),
-(3, 3, 100, 3, GETDATE()),
-(4, 4, 120, 4, GETDATE()),
-(5, 5, 180, 5, GETDATE()),
-(6, 6, 90, 1, GETDATE()),
-(7, 7, 110, 2, GETDATE()),
-(8, 8, 80, 3, GETDATE()),
-(9, 9, 70, 4, GETDATE()),
-(10, 10, 160, 5, GETDATE()),
-(11, 11, 120, 1, GETDATE()),
-(12, 12, 100, 2, GETDATE()),
-(13, 13, 130, 3, GETDATE()),
-(14, 14, 95, 4, GETDATE()),
-(15, 15, 140, 5, GETDATE()),
-(16, 16, 75, 1, GETDATE()),
-(17, 17, 85, 2, GETDATE()),
-(18, 18, 110, 3, GETDATE()),
-(19, 19, 125, 4, GETDATE()),
-(20, 20, 105, 5, GETDATE());
+(1, 1, 200, 1, NOW()),
+(2, 2, 150, 2, NOW()),
+(3, 3, 100, 3, NOW()),
+(4, 4, 120, 4, NOW()),
+(5, 5, 180, 5, NOW()),
+(6, 6, 90, 1, NOW()),
+(7, 7, 110, 2, NOW()),
+(8, 8, 80, 3, NOW()),
+(9, 9, 70, 4, NOW()),
+(10, 10, 160, 5, NOW()),
+(11, 11, 120, 1, NOW()),
+(12, 12, 100, 2, NOW()),
+(13, 13, 130, 3, NOW()),
+(14, 14, 95, 4, NOW()),
+(15, 15, 140, 5, NOW()),
+(16, 16, 75, 1, NOW()),
+(17, 17, 85, 2, NOW()),
+(18, 18, 110, 3, NOW()),
+(19, 19, 125, 4, NOW()),
+(20, 20, 105, 5, NOW());
 
 -- Insert 3 records for Permission
 INSERT INTO Permission (Permission_ID, User_management, Security, Configuration, Trails_and_Logs)
@@ -275,7 +294,6 @@ VALUES
 (1, 1, 1, 1, 1), -- Admin (Full access)
 (2, 1, 0, 0, 0), -- Staff (Management of schedules)
 (3, 0, 0, 0, 0); -- Patient (Order appointments)
-
 
 -- Insert 20 records for Account
 INSERT INTO Account (Account_ID, Name, Password, Permission_ID, Staff_ID, Patient_ID)

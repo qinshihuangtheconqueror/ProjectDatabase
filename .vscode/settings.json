@@ -9,7 +9,7 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "name": "hospital",
+            "name": "Hospital",
             "database": "Hospital_V01",
             "username": "root"
         }
