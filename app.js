@@ -22,24 +22,9 @@ app.set('views','./views');
 app.use(express.static(__dirname+ '/public'));
 require('dotenv').config();
 
-app.get('/landingPage',(req,res)=>{
-    res.render('landingPage');
-    });
-app.get('/login',(req,res)=>{
-    res.render('login');
-    });
-app.get('/adminDoctors',(req,res)=>{
-    res.render('adminDoctors');
-    });
-
-app.get('/adminAnalyst',(req,res)=>{
-    res.render('adminAnalyst');
-    });
-app.get('/adminDoctors/in4',(req,res)=>{
-        res.render('adminDoctorIn4');
-    });
+app.use(require('./routes/router').router);
 
 app.listen(process.env.PORT, function(){
-    console.log(`Example app listening on port ${process.env.PORT}`)
+    console.log(`Example app listening on port http://localhost:${process.env.PORT}`)
   });
 // Duong new coding end

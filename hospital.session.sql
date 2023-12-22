@@ -1,143 +1,4 @@
--- Create the Hospital_V01 database
-CREATE DATABASE Hospital_V01;
-GO
-
--- Use the Hospital_V01 database
-USE Hospital_V01;
-GO
-
-CREATE TABLE Room (
-    Room_ID INT PRIMARY KEY,
-    Room_name VARCHAR(255)
-);
-
-CREATE TABLE Department (
-    Department_ID INT PRIMARY KEY,
-    Department_name VARCHAR(255),
-    Room_ID INT, 
-    FOREIGN KEY(Room_ID) REFERENCES Room(Room_ID)
-);
-
-CREATE TABLE `Position` (
-    `Position_ID` INT PRIMARY KEY,
-    `Department_ID` INT,
-    `Specialization` VARCHAR(255),
-    `Salary` INT,
-    FOREIGN KEY (`Department_ID`) REFERENCES `Department` (`Department_ID`)
-);
-
-
-CREATE TABLE Staff (
-    Staff_ID INT PRIMARY KEY,
-    Position_ID INT,
-    Name VARCHAR(255),
-    Phone INT,
-    Address VARCHAR(255),
-    DOB DATE,
-    Gender CHAR(1),
-    Email VARCHAR(255),
-    FOREIGN KEY (Position_ID) REFERENCES `Position` (Position_ID)
-);
-
-
-
-CREATE TABLE Patient (
-    Patient_ID INT PRIMARY KEY,
-    Name VARCHAR(255),
-    Phone INT,
-    Address VARCHAR(255),
-    DOB DATE,
-    Health_insurance INT,
-    Gender CHAR(1),
-    Email VARCHAR(255)
-);
-
-
-CREATE TABLE Service (
-    Service_ID INT PRIMARY KEY,
-    Name VARCHAR(255),
-    Value INT
-);
-
-CREATE TABLE Supplier (
-    Supplier_ID INT PRIMARY KEY,
-    Supplier_name VARCHAR(255),
-    Phone INT,
-    Supplier_address VARCHAR(255),
-    Email VARCHAR(255)
-);
-
-CREATE TABLE Medication (
-    Medication_ID INT PRIMARY KEY,
-    Medication_name VARCHAR(255),
-    Medication_value INT,
-    Supplier_ID INT,
-    FOREIGN KEY (Supplier_ID) REFERENCES Supplier(Supplier_ID)
-);
-
-CREATE TABLE Stock (
-    Stock_ID INT PRIMARY KEY,
-    Medication_ID INT,
-    Current_number INT,
-    Room_ID INT,
-    Update_Time DATE,
-    FOREIGN KEY (Medication_ID) REFERENCES Medication(Medication_ID),
-    FOREIGN KEY (Room_ID) REFERENCES Room(Room_ID)
-);
-
-CREATE TABLE Permission (
-    Permission_ID INT PRIMARY KEY,
-    User_management INT,
-    Per_security INT,
-    Per_configuration INT,
-    Trails_and_Logs INT
-);
-
-CREATE TABLE Account (
-    Account_ID INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    email varchar (100) NOT NULL,
-    Permission_ID INT,
-    Staff_ID INT,
-    Patient_ID INT,
-    FOREIGN KEY(Permission_ID) REFERENCES Permission(Permission_ID),
-    FOREIGN KEY(Staff_ID) REFERENCES Staff(Staff_ID),
-    FOREIGN KEY(Patient_ID) REFERENCES Patient(Patient_ID)
-);
-
-
-CREATE TABLE Stay (
-    Stay_ID INT PRIMARY KEY,
-    Patient_ID INT FOREIGN KEY REFERENCES Patient(Patient_ID),
-    Start_Day DATE,
-    End_Day DATE,
-    Room_ID INT FOREIGN KEY REFERENCES Room(Room_ID)
-);
-
-CREATE TABLE Appointment (
-    Appointment_ID INT PRIMARY KEY,
-    Patient_ID INT FOREIGN KEY REFERENCES Patient(Patient_ID),
-    Staff_ID INT FOREIGN KEY REFERENCES Staff(Staff_ID),
-    Service_ID INT FOREIGN KEY REFERENCES Service(Service_ID),
-    Start_Time DATE,
-    End_Time DATE,
-    Stay_ID INT FOREIGN KEY REFERENCES Stay(Stay_ID),
-    Diagnostic VARCHAR(1000),
-    Payment VARCHAR(255)
-);
-
-
-CREATE TABLE Bill (
-    Appointment_ID INT,
-    Medication_ID INT FOREIGN KEY REFERENCES Medication(Medication_ID),
-    Quantity INT,
-	CONSTRAINT PK_Bill PRIMARY KEY (Appointment_ID, Medication_ID)
-);
-
----------------add the data------------------
--- Insert 10 records for Room
-INSERT INTO Room (Room_ID, Name)
+INSERT INTO Room (Room_ID, Room_name)
 VALUES
 (1, 'Room 101'),
 (2, 'Room 102'),
@@ -149,7 +10,7 @@ VALUES
 (8, 'Room 302'),
 (9, 'Room 303'),
 (10, 'Room 401');
-INSERT INTO Department (Department_ID, Name, Room_ID)
+INSERT INTO Department (Department_ID, Department_name, Room_ID)
 VALUES
 (1, 'Cardiology', 1),
 (2, 'Orthopedics', 2),
@@ -172,7 +33,7 @@ VALUES
 (10, 5, 'Pediatric Nurse', 59000);
 
 -- Insert 10 records for Staff
-INSERT INTO Staff (Staff_ID, Position_ID, Name, Phone, Address, DOB, Gender, Email)
+INSERT INTO Staff (Staff_ID, Position_ID, Staff_name, Phone, Address, DOB, Gender, Email)
 VALUES
 (1, 1, 'John Doe', 12345678, '123 Main St', '1980-01-01', 'M', 'john.doe@example.com'),
 (2, 2, 'Jane Smith', 98765432, '456 Oak St', '1990-02-15', 'F', 'jane.smith@example.com'),
@@ -303,49 +164,3 @@ VALUES
 (38, 'patient_account8', 'password_patient8', 3, NULL, 8),
 (39, 'patient_account9', 'password_patient9', 3, NULL, 9),
 (40, 'patient_account10', 'password_patient10',3, NULL, 10);
--- Insert 5 records for Stay
-INSERT INTO Stay (Stay_ID, Patient_ID, Start_Day, End_Day, Room_ID)
-VALUES
-(1, 1, '2023-11-18', '2023-11-20', 1),
-(2, 2, '2023-11-19', '2023-11-21', 2),
-(3, 3, '2023-11-20', '2023-11-22', 3),
-(4, 4, '2023-11-21', '2023-11-23', 4),
-(5, 5, '2023-11-22', '2023-11-24', 5);
-
--- Insert 5 records for Appointment
-INSERT INTO Appointment (Appointment_ID, Patient_ID, Staff_ID, Service_ID, Start_Time, End_Time, Stay_ID, Diagnostic, Payment)
-VALUES
-(1, 1, 1, 1, '2023-11-18 10:00:00', '2023-11-18 11:00:00', 1, N'Hết thuốc chữa', N'Tiền mặt'),
-(2, 2, 2, 2, '2023-11-19 14:30:00', '2023-11-19 15:30:00', 2, N'Vẫn cứu được', N'Chuyển Khoản'),
-(3, 3, 3, 3, '2023-11-20 09:15:00', '2023-11-20 10:15:00', 3, N'Bệnh tinh thần là chính', N'Tiền mặt'),
-(4, 4, 4, 4, '2023-11-21 11:30:00', '2023-11-21 12:30:00', 4, N'Về nhà thích ăn gì thì ăn đi, thích đi đâu thì đi đi nhé', N'Chuyển khoản'),
-(5, 5, 5, 5, '2023-11-22 13:45:00', '2023-11-22 14:45:00', 5, N'Nộp 5 tỷ thì cứu được', N'Tiền mặt');
-
--- Insert 5 records for Bill
-INSERT INTO Bill (Appointment_ID, Medication_ID, Quantity)
-VALUES
-(1, 1, 2),
-(1, 2, 3),
-(1, 13, 2),
-(1, 20, 1),
-(1, 14, 2),
-(1, 15, 3),
-(1, 17, 2),
-(1, 4, 1),
-(2, 2, 1),
-(2, 13, 20),
-(2, 20, 1),
-(2, 14, 2),
-(3, 3, 3),
-(3, 1, 2),
-(3, 2, 3),
-(3, 13, 2),
-(3, 20, 1),
-(4, 4, 1),
-(4, 17, 2),
-(4, 5, 1),
-(4, 1, 1),
-(4, 13, 2),
-(5, 5, 2),
-(5, 3, 1);
-
