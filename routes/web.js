@@ -1,11 +1,9 @@
-const authMiddleware = require('../middlewares/auth.middleware');
+var router = require('express').Router();
+var authMiddleware = require('../middlewares/auth.middleware');
 
 module.exports = app => {
-    var router = require('express').Router();
-
-    router.get('/landingPage', authMiddleware.loggedin, (req, res) => {
-        res.render('landingPage');
+    router.get('/home', (req, res) => {
+        res.render('home');
     });
-
     app.use(router);
 }

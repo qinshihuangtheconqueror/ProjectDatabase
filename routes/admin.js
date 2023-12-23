@@ -11,4 +11,5 @@ module.exports = app => {
     router.get('/adminDoctors/in4',(req,res)=>{
             res.render('adminDoctorIn4');
     });
+    app.use(router);
 }

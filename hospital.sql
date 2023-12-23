@@ -12,22 +12,8 @@ CREATE TABLE Room (
 CREATE TABLE Department (
     Department_ID INT PRIMARY KEY,
     Name VARCHAR(255),
-    Room_ID INT FOREIGN KEY REFERENCES Room(Room_ID)
-);
-
-CREATE TABLE `Position` (
-    Position_ID INT PRIMARY KEY,
-    Department_ID INT,
-    Specialization VARCHAR(255),
-    Salary INT,
-    FOREIGN KEY(Department_ID) REFERENCES Department(Department_ID)
-);
-
-CREATE TABLE Department (
-    Department_ID INT PRIMARY KEY,
-    Name VARCHAR(255),
     Room_ID INT,
-    FOREIGN key(Room_ID) REFERENCES Room(Room_ID)
+    FOREIGN KEY (Room_ID) REFERENCES Room(Room_ID)
 );
 
 CREATE TABLE `Position` (
@@ -79,13 +65,6 @@ CREATE TABLE Medication (
     Medication_ID INT PRIMARY KEY,
     Name VARCHAR(255),
     Value INT,
-    Supplier_ID INT FOREIGN KEY REFERENCES Supplier(Supplier_ID),
-);
-
-CREATE TABLE Medication (
-    Medication_ID INT PRIMARY KEY,
-    Name VARCHAR(255),
-    Value INT,
     Supplier_ID INT,
     FOREIGN KEY (Supplier_ID) REFERENCES Supplier(Supplier_ID)
 );
@@ -109,12 +88,13 @@ CREATE TABLE Permission (
 );
 
 CREATE TABLE Account (
-    Account_ID INT PRIMARY KEY,
+    Account_ID INT PRIMARY KEY AUTO_INCREMENT,
     Name VARCHAR(255),
-    Password VARCHAR(50),
+    Password VARCHAR(250),
     Permission_ID INT,
     Staff_ID INT,
     Patient_ID INT,
+    Email VARCHAR(100),
     FOREIGN KEY(Permission_ID) REFERENCES Permission(Permission_ID),
     FOREIGN KEY(Staff_ID) REFERENCES Staff(Staff_ID),
     FOREIGN KEY(Patient_ID) REFERENCES Patient(Patient_ID)
@@ -296,31 +276,30 @@ VALUES
 (3, 0, 0, 0, 0); -- Patient (Order appointments)
 
 -- Insert 20 records for Account
-INSERT INTO Account (Account_ID, Name, Password, Permission_ID, Staff_ID, Patient_ID)
+INSERT INTO Account (Name, Password, Permission_ID, Staff_ID, Patient_ID, Email)
 VALUES
-(1, 'admin','admin123',1,NULL,NULL),
--- Staff-linked accounts
-(21, 'staff_account1', 'password_staff1', 2, 1, NULL),
-(22, 'staff_account2', 'password_staff2', 2, 2, NULL),
-(23, 'staff_account3', 'password_staff3', 2, 3, NULL),
-(24, 'staff_account4', 'password_staff4', 2, 4, NULL),
-(25, 'staff_account5', 'password_staff5', 2, 5, NULL),
-(26, 'staff_account6', 'password_staff6', 2, 6, NULL),
-(27, 'staff_account7', 'password_staff7', 2, 7, NULL),
-(28, 'staff_account8', 'password_staff8', 2, 8, NULL),
-(29, 'staff_account9', 'password_staff9', 2, 9, NULL),
-(30, 'staff_account10', 'password_staff10',2, 10, NULL),
--- Patient-linked accounts
-(31, 'patient_account1', 'password_patient1', 3, NULL, 1),
-(32, 'patient_account2', 'password_patient2', 3, NULL, 2),
-(33, 'patient_account3', 'password_patient3', 3, NULL, 3),
-(34, 'patient_account4', 'password_patient4', 3, NULL, 4),
-(35, 'patient_account5', 'password_patient5', 3, NULL, 5),
-(36, 'patient_account6', 'password_patient6', 3, NULL, 6),
-(37, 'patient_account7', 'password_patient7', 3, NULL, 7),
-(38, 'patient_account8', 'password_patient8', 3, NULL, 8),
-(39, 'patient_account9', 'password_patient9', 3, NULL, 9),
-(40, 'patient_account10', 'password_patient10',3, NULL, 10);
+('admin','admin123',1,NULL,NULL, 'admin@example.com'),
+('staff_account1', 'password_staff1', 2, 1, NULL, 'staff1@example.com'),
+('staff_account2', 'password_staff2', 2, 2, NULL, 'staff2@example.com'),
+('staff_account3', 'password_staff3', 2, 3, NULL, 'staff3@example.com'),
+('staff_account4', 'password_staff4', 2, 4, NULL, 'staff4@example.com'),
+('staff_account5', 'password_staff5', 2, 5, NULL, 'staff5@example.com'),
+('staff_account6', 'password_staff6', 2, 6, NULL, 'staff6@example.com'),
+('staff_account7', 'password_staff7', 2, 7, NULL, 'staff7@example.com'),
+('staff_account8', 'password_staff8', 2, 8, NULL, 'staff8@example.com'),
+('staff_account9', 'password_staff9', 2, 9, NULL, 'staff9@example.com'),
+('staff_account10', 'password_staff10',2, 10, NULL, 'staff10@example.com'),
+('patient_account1', 'password_patient1', 3, NULL, 1, 'patient1@example.com'),
+('patient_account2', 'password_patient2', 3, NULL, 2, 'patient2@example.com'),
+('patient_account3', 'password_patient3', 3, NULL, 3, 'patient3@example.com'),
+('patient_account4', 'password_patient4', 3, NULL, 4, 'patient4@example.com'),
+('patient_account5', 'password_patient5', 3, NULL, 5, 'patient5@example.com'),
+('patient_account6', 'password_patient6', 3, NULL, 6, 'patient6@example.com'),
+('patient_account7', 'password_patient7', 3, NULL, 7, 'patient7@example.com'),
+('patient_account8', 'password_patient8', 3, NULL, 8, 'patient8@example.com'),
+('patient_account9', 'password_patient9', 3, NULL, 9, 'patient9@example.com'),
+('patient_account10', 'password_patient10',3, NULL, 10, 'patient10@example.com');
+
 -- Insert 5 records for Stay
 INSERT INTO Stay (Stay_ID, Patient_ID, Start_Day, End_Day, Room_ID)
 VALUES

@@ -1,7 +1,7 @@
 var router = require('express').Router();
-const login = require();
-const register = require();
-const authMiddleware = require();
+const login = require('../controllers/auth/login.controller');
+const register = require('../controllers/auth/register.controller');
+const authMiddleware = require('../middlewares/auth.middleware');
 
 module.exports = app => {
     router.get('/login', authMiddleware.isAuth, login.showLoginForm)
