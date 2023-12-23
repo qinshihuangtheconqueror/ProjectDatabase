@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 require('dotenv/config');
 
+<<<<<<< HEAD
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
 app.set('views', 'views');
@@ -37,3 +38,6 @@ require('./routes/router')(app);
 app.listen(process.env.PORT, function(){
     console.log(`Example app listening on port http://localhost:${process.env.PORT}`)
 });
+=======
+var bodyParser = require ('body-parser')
+>>>>>>> e094b9ec54bdbd3a738079922b9f3555e1b5669f
