@@ -7,14 +7,14 @@ exports.create = (req, res) => {
 }
 
 exports.register = (req, res) => {
-    const { email, password, name } = req.body;
+    const { email, password, name, phoneNumber, dob } = req.body;
 
     if (email && password && name) {
         User.findByEmail(email, (err, user) => {
             if (err || user) {
                 // A user with that email address does not exists
                 const conflictError = 'User credentials are exist.';
-                res.render('register', { email, password, name, conflictError });
+                res.render('login', { email, password, name, conflictError });
             }
         })
 
@@ -33,7 +33,7 @@ exports.register = (req, res) => {
         //});
     } else {
         const conflictError = 'User credentials are exist.';
-        res.render('register', { email, password, name, conflictError });
+        res.render('login', { email, password, name, conflictError });
     }
 }
 

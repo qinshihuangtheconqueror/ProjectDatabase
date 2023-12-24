@@ -28,10 +28,6 @@ app.use(session({
   saveUninitialized: true,
 }))
 
-app.get('/',(req,res)=>{
-  res.render('landingPage');
-});
-
 require('./routes/router')(app);
 
 app.listen(process.env.PORT, function(){

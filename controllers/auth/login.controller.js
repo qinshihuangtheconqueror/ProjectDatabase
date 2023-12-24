@@ -12,8 +12,6 @@ exports.login = (req, res) => {
             if (!user) {
                 res.redirect('/login');
             } else {
-                console.log(password);
-                console.log(user.Password);
                 //bcrypt.compare(password, user.password, (err, result) => {
                     if (password == user.Password) {
                         req.session.loggedin = true;
