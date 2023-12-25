@@ -47,6 +47,9 @@ app.get('/adminPatient/in4',(req,res)=>{
 app.get('/adminAppointment',(req,res)=>{
     res.render('adminAppointment');
 });
+app.get('/makeAppointment',(req,res)=>{
+    res.render('makeAppointment');
+});
 app.listen(process.env.PORT, function(){
     console.log(`Example app listening on port ${process.env.PORT}`)
   });
