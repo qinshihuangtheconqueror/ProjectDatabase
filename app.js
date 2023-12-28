@@ -59,3 +59,6 @@ require('./routes/router')(app);
 app.listen(process.env.PORT, function(){
     console.log(`Example app listening on port http://localhost:3000`)
 });
+
+var bodyParser = require ('body-parser')
+
