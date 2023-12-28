@@ -3,7 +3,7 @@ var authMiddleware = require('../middlewares/auth.middleware');
 const login = require('../controllers/auth/login.controller');
 
 module.exports = app => {
-    router.get('/', (req, res) => {
+    router.get('/landingPage', (req, res) => {
         res.render('landingPage');
     });
 
