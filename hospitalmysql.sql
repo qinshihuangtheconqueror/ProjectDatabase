@@ -1,10 +1,15 @@
-/*create database hospital
+CREATE DATABASE Hospital;
 
-use hospital
-*/
+USE Hospital;
+
+Create Table Specialization(
+	Specialization_ID INT primary key,
+	Specialization_Name varchar(255),
+	Department varchar(255)
+);
 
 CREATE TABLE staff (
-    Staff_ID INT PRIMARY KEY,
+    Staff_ID INT PRIMARY KEY AUTO_INCREMENT,
     Name VARCHAR(255),
     Specialization_ID INT,
     Salary FLOAT,
@@ -16,12 +21,6 @@ CREATE TABLE staff (
     FOREIGN KEY (Specialization_ID) REFERENCES Specialization(Specialization_ID)
 );
 
-
-Create Table Specialization(
-	Specialization_ID INT primary key,
-	Specialization_Name varchar(255),
-	Department varchar(255)
-);
 CREATE TABLE Service (
     Service_ID INT PRIMARY KEY,
     Name VARCHAR(255),
@@ -49,10 +48,19 @@ CREATE TABLE Service (
     Password VARCHAR(50),
     Staff_ID INT,
     Patient_ID INT,
-    Type_Of_Account INT NOT NULL,
+    Type_Of_Account INT,
     FOREIGN KEY (Staff_ID) REFERENCES staff(Staff_ID),
     FOREIGN KEY (Patient_ID) REFERENCES Patient(Patient_ID)
 );
+ 
+Create Table Room
+ (
+	Room_ID int primary key,
+	Name varchar(255),
+	Status int,
+	Type varchar(255),
+	Value int
+ );
 
 CREATE TABLE Appointment (
     Appointment_ID INT PRIMARY KEY,
@@ -68,13 +76,3 @@ CREATE TABLE Appointment (
     FOREIGN KEY (Service_ID) REFERENCES Service(Service_ID),
     FOREIGN KEY (Room_ID) REFERENCES Room(Room_ID)
 );
-
- create Table Room
- (
-	Room_ID int primary key,
-	Name varchar(255),
-	Status int,
-	Type varchar(255),
-	Value int
- )
- 
