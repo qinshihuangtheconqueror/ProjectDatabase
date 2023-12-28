@@ -46,6 +46,12 @@ app.get('/adminDoctors',(req,res)=>{
 app.get('/landingPage',(req,res)=>{
     res.render('landingPage');
     });
+app.get('/patientAppointment',(req,res)=>{
+        res.render('patientAppointment');
+    });   
+app.get('/patientSchedule',(req,res)=>{
+        res.render('patientSchedule');
+    });   
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: true,
