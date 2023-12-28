@@ -6,7 +6,7 @@ const login = require('../controllers/auth/login.controller');
 >>>>>>> cb456ea (Trying merge)
 
 module.exports = app => {
-    router.get('/', (req, res) => {
+    router.get('/landingPage', (req, res) => {
         res.render('landingPage');
     });
 
