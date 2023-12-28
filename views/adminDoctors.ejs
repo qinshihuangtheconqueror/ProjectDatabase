@@ -85,7 +85,7 @@
                     <iconify-icon icon="healthicons:doctor" class='bx' width = '50' height = '50'></iconify-icon>
                     <span class="info">
                         <h3>
-                            419
+                            <%- JSON.stringify(staffCount) %>
                         </h3>
                         <p>Doctors</p>
                     </span>
@@ -94,7 +94,7 @@
                     <iconify-icon icon="guidance:in-patient" width="50" height="50"  class='bx' ></iconify-icon>
                     <span class="info">
                         <h3>
-                            6,969
+                            <%- JSON.stringify(patientCount) %>
                         </h3>
                         <p>Patients</p>
                     </span>
@@ -103,7 +103,7 @@
                     <iconify-icon icon="maki:doctor" width="50" height="50" class ='bx'></iconify-icon>
                     <span class="info">
                         <h3>
-                            56
+                            xxx
                         </h3>
                         <p>Attend</p>
                     </span>
@@ -112,23 +112,22 @@
                     <iconify-icon icon="tabler:heart-rate-monitor" width="50" height="50" class ='bx'></iconify-icon>
                     <span class="info">
                         <h3>
-                            123
+                            xxx
                         </h3>
                         <p>Pending</p>
                     </span>
                 </li>
             </ul>
             <!-- End of Insights -->
-                <div class = 'Doctors-Crud'>
-                    <button class = 'Doctors-Crud-list' style="background-color: rgb(187, 247, 208);">
-                      Add Doctor
-                    </button>
-                    <button class = 'Doctors-Crud-list'  style="background-color: rgb(254, 205, 211);">
-                        Remove Doctor
-                    </button>
-
-                </div>
-
+            <div class = 'Doctors-Crud'>
+                <button class = 'Doctors-Crud-list' id="addDoctorButton" style="background-color: rgb(187, 247, 208);">
+                Add Doctor
+                </button>
+                <button class = 'Doctors-Crud-list' id="removeDoctorButton" style="background-color: rgb(254, 205, 211);">
+                Remove Doctor
+                </button>
+            </div>
+            
                 <!-- Profile of doctor -->
                     <!-- <div class ='doctor-details'>
                         <div class ='doctor-details-img'> 
@@ -139,624 +138,120 @@
 
 
             <!-- Youtube -->
-            <div class="video">
-                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                                <a href = "/adminDoctors/in4" >
-                    <div class="video-div" >
-                        <div class="videoandtime">
-                            <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                        
-                        </div>
-                        <div class="video-description">
-                            <div class="video-thumnails">
-                                <img class="logo-channel" src="/images/ava.jpg">
-                            </div>
-                            <div class="video-info">
-                                <p class="video-title">Nguyen Dinh Duong</p>
-                                <p class="video-channel">Emergency</p>
-                                <p class="video-sub">Professor</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-      
+            <div class="video" id = doctorInfo>
                 
             </div>
 
-            <!-- End Youtube -->
+            <script class="Update Doctor">
+                // const ws = new WebSocket('ws://localhost:3000/ws'); // WebSocket endpoint
+                // ws.onopen = () => {
+                // console.log('Connected to WebSocket');
+                // };
+
+                // ws.onmessage = (event) => {
+                // const doctors = JSON.parse(event.data);
+                // updateDoctorTemplate(doctors);
+                // };
+                
+                function updateDoctorTemplate() {
+                    const container = document.getElementById('doctorInfo');
+                    container.innerHTML = ''; 
+                    var doctors = <%- JSON.stringify(doctors) %>
+
+                    let doctorTemplate = '';
+            
+                    // Ensure doctors is an array before attempting to iterate
+                    if (Array.isArray(doctors)) {
+                        doctors.forEach(doctor => {
+                            doctorTemplate += `
+                                <a href="/adminDoctors/in4">
+                                    <div class="video-div">
+                                        <div class="videoandtime">
+                                            <div class="video-video"><img class="thumnails" src="/images/doctor.png" ></div>
+                                        </div>
+                                        <div class="video-description">
+                                            <div class="video-thumnails">
+                                                <img class="logo-channel" src="/images/ava.jpg">
+                                            </div>
+                                            <div class="video-info">
+                                                <p class="video-title">${doctor.Name}</p>
+                                                <p class="video-channel">${doctor.Phone}</p>
+                                                <p class="video-sub">${doctor.Staff_ID}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            `;
+                        });
+                    } else {
+                        console.error('Doctors data is not an array');
+                    }
+                    container.innerHTML = doctorTemplate;
+                }
+                updateDoctorTemplate();
+            </script>
+
+            <script>
+                    document.getElementById('addDoctorButton').addEventListener('click', () => {
+                    const name = prompt('Enter doctor\'s name:');
+                    const phone = prompt('Enter doctor\'s phone number:');
+
+                    if (name && phone) {
+                        const doctorData = { Name: name, Phone: phone };
+
+                        fetch('/adminDoctors', {
+                            method: 'POST',
+                            headers: {
+                            'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(doctorData),
+                        })
+                        .then((response) => {
+                            if (!response.ok) {
+                                throw new Error('Failed to add doctor');
+                            }
+                        })
+                        .catch((error) => {
+                        console.error('Error adding doctor:', error);
+                        // Handle error scenario - show an error message, etc.
+                        });
+                    } else {
+                        alert('Doctor information is incomplete');
+                    }
+                });
+            </script>
+            
+            <script>
+                document.getElementById('removeDoctorButton').addEventListener('click', () => {
+                  const staffId = prompt('Enter doctor\'s staff ID');
+              
+                  if (staffId) {
+                    const doctorData = { Staff_Id: staffId }; // Fixed the key name to match your data structure
+              
+                    fetch('/adminDoctors', {
+                      method: 'DELETE', // Assuming you want to delete the doctor (use 'DELETE' method)
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify(doctorData),
+                    })
+                      .then((response) => {
+                        if (!response.ok) {
+                          throw new Error('Failed to remove doctor');
+                        }
+                        // If successfully removed, update UI or take appropriate action
+                        // updateDoctorList(); // Implement this function to update the doctor list
+                      })
+                      .catch((error) => {
+                        console.error('Error removing doctor:', error);
+                        // Handle error scenario - show an error message, etc.
+                      });
+                  } else {
+                    alert('Doctor information is incomplete');
+                  }
+                });
+              </script>
+
         </main>
 
     </div>
