@@ -11,5 +11,17 @@ module.exports = app => {
         res.render('home');
     });
     
+    router.get('/makeAppointment', (req, res) => {
+        res.render('makeAppointment');
+    })
+
+    router.get('/patientAppointment', (req, res) => {
+        res.render('patientAppointment');
+    })
+
+    router.get('/patientSchedule', (req, res) => {
+        res.render('patientSchedule');
+    })
+
     app.use(router);
 }

@@ -74,12 +74,51 @@ module.exports = app => {
     // });
 
     router.get('/adminAnalyst',(req,res)=>{
-        res.render('adminAnalyst');
+      sql.query('SELECT * FROM staff', (err, results) => {
+        const doctors = results;
+        sql.query('SELECT COUNT(staff_id) AS staffCount FROM staff', (err, countResult) => {
+          const staffCount = countResult[0].staffCount;
+          sql.query('SELECT COUNT(patient_id) AS patientCount FROM Patient', (err, countRes) =>{
+            const patientCount = countRes[0].patientCount;
+            res.render('adminAnalyst', { doctors, staffCount, patientCount });
+          })
+        });
+      });  
     });
     
     router.get('/adminDoctors/in4',(req,res)=>{
             res.render('adminDoctorIn4');
     });
+
+    router.get('/adminAppointment',(req,res)=>{
+      sql.query('SELECT * FROM staff', (err, results) => {
+        const doctors = results;
+        sql.query('SELECT COUNT(staff_id) AS staffCount FROM staff', (err, countResult) => {
+          const staffCount = countResult[0].staffCount;
+          sql.query('SELECT COUNT(patient_id) AS patientCount FROM Patient', (err, countRes) =>{
+            const patientCount = countRes[0].patientCount;
+            res.render('adminAppointment', { doctors, staffCount, patientCount });
+          })
+        });
+      });  
+    });
+
+    router.get('/adminPatient',(req,res)=>{
+      sql.query('SELECT * FROM patient', (err, results) => {
+        const patients = results;
+        sql.query('SELECT COUNT(staff_id) AS staffCount FROM staff', (err, countResult) => {
+          const staffCount = countResult[0].staffCount;
+          sql.query('SELECT COUNT(patient_id) AS patientCount FROM Patient', (err, countRes) =>{
+            const patientCount = countRes[0].patientCount;
+            res.render('adminPatient', { patients, staffCount, patientCount });
+          })
+        });
+      });  
+    });
+
+    router.get('/adminPatient/in4', (req,res)=>{
+      res.render('adminPatientIn4');
+    })
     
     app.use(router);
 }

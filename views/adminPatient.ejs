@@ -70,7 +70,7 @@
                     <h1>Dashboard</h1>
                     <ul class="breadcrumb">
                         <li><a href="#">
-                                Doctors
+                                Patient
                             </a></li>
                         
                     </ul>
@@ -119,25 +119,12 @@
                 </li>
             </ul>
             <!-- End of Insights -->
-            <div class = 'Doctors-Crud'>
-                <button class = 'Doctors-Crud-list' id="addDoctorButton" style="background-color: rgb(187, 247, 208);">
-                Add Doctor
-                </button>
-                <button class = 'Doctors-Crud-list' id="removeDoctorButton" style="background-color: rgb(254, 205, 211);">
-                Remove Doctor
-                </button>
-            </div>
-            
-                <!-- Profile of doctor -->
-                    <!-- <div class ='doctor-details'>
-                        <div class ='doctor-details-img'> 
-                            <img src =>
-                        </div>
-                    </div> -->
-                <!-- Profile of doctor end -->
+
+
 
 
             <!-- Youtube -->
+            
             <div class="video" id = doctorInfo>
                 
             </div>
@@ -181,67 +168,7 @@
                 updateDoctorTemplate();
             </script>
 
-            <script>
-                    document.getElementById('addDoctorButton').addEventListener('click', () => {
-                    const name = prompt('Enter doctor\'s name:');
-                    const phone = prompt('Enter doctor\'s phone number:');
-
-                    if (name && phone) {
-                        const doctorData = { Name: name, Phone: phone };
-
-                        fetch('/adminDoctors', {
-                            method: 'POST',
-                            headers: {
-                            'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify(doctorData),
-                        })
-                        .then((response) => {
-                            if (!response.ok) {
-                                throw new Error('Failed to add doctor');
-                            }
-                            window.location.reload()
-                        })
-                        .catch((error) => {
-                        console.error('Error adding doctor:', error);
-                        // Handle error scenario - show an error message, etc.
-                        });
-                    } else {
-                        alert('Doctor information is incomplete');
-                    }
-                });
-            </script>
-            
-            <script>
-                document.getElementById('removeDoctorButton').addEventListener('click', () => {
-                  const staffId = prompt('Enter doctor\'s staff ID');
-              
-                  if (staffId) {
-                    const doctorData = { Staff_Id: staffId }; // Fixed the key name to match your data structure
-              
-                    fetch('/adminDoctors', {
-                      method: 'DELETE', // Assuming you want to delete the doctor (use 'DELETE' method)
-                      headers: {
-                        'Content-Type': 'application/json',
-                      },
-                      body: JSON.stringify(doctorData),
-                    })
-                      .then((response) => {
-                        if (!response.ok) {
-                          throw new Error('Failed to remove doctor');
-                        }
-                        window.location.reload()
-                      })
-                      .catch((error) => {
-                        console.error('Error removing doctor:', error);
-                        // Handle error scenario - show an error message, etc.
-                      });
-                  } else {
-                    alert('Doctor information is incomplete');
-                  }
-                });
-              </script>
-
+            <!-- End Youtube -->
         </main>
 
     </div>

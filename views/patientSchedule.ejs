@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/css/admin.css">
-  
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <title>Admin Medical Care</title>
 </head>
@@ -15,16 +14,14 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <a href="#" class="logo">
+        <a href="/landingPage" class="logo">
          <img src="/images/NewlogoV05.png" width="200" > 
         </a>
         <ul class="side-menu">
-            <li><a href="/adminDashboard"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
-            <li><a href="/adminDoctors"><iconify-icon icon="healthicons:doctor" width="25" height="25" style ='margin: 6px;'></iconify-icon> Doctors</a></li>
-            <li><a href="/adminPatient"><i class='bx bx-group'></i>Patients</a></li>
-            <li class="active"><a href="/adminAnalyst"><i class='bx bx-analyse'></i>Analytics</a></li>
-            <li><a href="/adminAppointment"><iconify-icon icon="teenyicons:appointments-solid" width="23" height="23" style ='margin: 8px;'></iconify-icon>Appointment</a></li>
-            <li><a href="/adminSettings"><i class='bx bx-cog'></i>Settings</a></li>
+            <li><a href="#"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+            <li ><a href="/patientSchedule"><iconify-icon icon="healthicons:doctor" width="25" height="25" style ='margin: 6px;'></iconify-icon>Schedule</a></li>
+            <li><a href="/patientAppointment"><iconify-icon icon="teenyicons:appointments-solid" width="23" height="23" style ='margin: 8px;'></iconify-icon>Appointment</a></li>
+            <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
         </ul>
         <ul class="side-menu">
             <li>
@@ -64,19 +61,18 @@
         <main>
             <div class="header">
                 <div class="left">
-                    <h1>Dashboard</h1>
+                    <h1>Your Schedule </h1>
                     <ul class="breadcrumb">
                         <li><a href="#">
-                                Analytics
+                                Appointment
                             </a></li>
-                        /
-                        <li><a href="#" class="active">Hospital</a></li>
+
                     </ul>
                 </div>
-                <a href="#" class="report">
+                <!-- <a href="#" class="report">
                     <i class='bx bx-cloud-download'></i>
                     <span>Download CSV</span>
-                </a>
+                </a> -->
             </div>
 
             <!-- Insights -->
@@ -86,7 +82,7 @@
                     <iconify-icon icon="healthicons:doctor" class='bx' width = '50' height = '50'></iconify-icon>
                     <span class="info">
                         <h3>
-                            69
+                            3
                         </h3>
                         <p>Doctors</p>
                     </span>
@@ -95,9 +91,9 @@
                     <iconify-icon icon="guidance:in-patient" width="50" height="50"  class='bx' ></iconify-icon>
                     <span class="info">
                         <h3>
-                            6,999
+                            4
                         </h3>
-                        <p>Patients</p>
+                        <p>Appointment</p>
                     </span>
                 </li>
                 <li>
@@ -106,18 +102,10 @@
                         <h3>
                             56
                         </h3>
-                        <p>Attend</p>
+                        <p>Attended</p>
                     </span>
                 </li>
-                <li>
-                    <iconify-icon icon="tabler:heart-rate-monitor" width="50" height="50" class ='bx'></iconify-icon>
-                    <span class="info">
-                        <h3>
-                            123
-                        </h3>
-                        <p>Pending</p>
-                    </span>
-                </li>
+
             </ul>
             <!-- End of Insights -->
 
@@ -197,64 +185,6 @@
                     </table>
                   
                 </div>
-
-                <!-- Reminders -->
-                <div class="reminders">
-                    <div class="header">
-                        <i class='bx bx-note'></i>
-                        <h3>Doctors Lists</h3>
-                        <i class='bx bx-filter'></i>
-                        <i class='bx bx-plus'></i>
-                    </div>
-                    <div class="task-scroll">
-                    <ul class="task-list">
-                        <li class="completed">
-                            <div class="task-title">
-                                <iconify-icon icon="healthicons:doctor" class='bx' width = '25' height = '25'></iconify-icon>
-                                <p>Nguyen Dinh Duong - Internal medicine</p>
-                            </div>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                        <li class="completed">
-                            <div class="task-title">
-                                <iconify-icon icon="healthicons:doctor" class='bx' width = '25' height = '25'></iconify-icon>
-                                <p>Le Hoang Huy - Resuscitation</p>
-                            </div>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                        <li class="completed">
-                            <div class="task-title">
-                                <iconify-icon icon="healthicons:doctor" class='bx' width = '25' height = '25'></iconify-icon>
-                                <p>Nguyen Trong Minh Phuong - Pediatrics </p>
-                            </div>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                        <li class="completed">
-                            <div class="task-title">
-                                <iconify-icon icon="healthicons:doctor" class='bx' width = '25' height = '25'></iconify-icon>
-                                <p>Tran Viet Anh - Surgery</p>
-                            </div>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                        <li class="not-completed">
-                            <div class="task-title">
-                                <iconify-icon icon="healthicons:doctor" class='bx' width = '25' height = '25'></iconify-icon>
-                                <p>Nguyen Dinh Duong - Emergency</p>
-                            </div>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                        <li class="completed">
-                            <div class="task-title">
-                                <iconify-icon icon="healthicons:doctor" class='bx' width = '25' height = '25'></iconify-icon>
-                                <p>Le Hoang Huy - Resuscitation</p>
-                            </div>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                    </ul>
-                </div>
-                </div>
-
-                <!-- End of Reminders-->
 
             </div>
 
