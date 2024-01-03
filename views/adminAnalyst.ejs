@@ -28,7 +28,7 @@
         </ul>
         <ul class="side-menu">
             <li>
-                <a href="#" class="logout">
+                <a href="/logout" class="logout">
                     <i class='bx bx-log-out-circle'></i>
                     Logout
                 </a>
@@ -79,6 +79,7 @@
                 </a>
             </div>
 
+            
             <!-- Insights -->
             <ul class="insights">
                 <li>
@@ -86,7 +87,7 @@
                     <iconify-icon icon="healthicons:doctor" class='bx' width = '50' height = '50'></iconify-icon>
                     <span class="info">
                         <h3>
-                            69
+                            <%- JSON.stringify(staffCount) %>
                         </h3>
                         <p>Doctors</p>
                     </span>
@@ -95,7 +96,7 @@
                     <iconify-icon icon="guidance:in-patient" width="50" height="50"  class='bx' ></iconify-icon>
                     <span class="info">
                         <h3>
-                            6,999
+                            <%- JSON.stringify(patientCount) %>
                         </h3>
                         <p>Patients</p>
                     </span>
@@ -104,7 +105,7 @@
                     <iconify-icon icon="maki:doctor" width="50" height="50" class ='bx'></iconify-icon>
                     <span class="info">
                         <h3>
-                            56
+                            xxx
                         </h3>
                         <p>Attend</p>
                     </span>
@@ -113,7 +114,7 @@
                     <iconify-icon icon="tabler:heart-rate-monitor" width="50" height="50" class ='bx'></iconify-icon>
                     <span class="info">
                         <h3>
-                            123
+                            xxx
                         </h3>
                         <p>Pending</p>
                     </span>

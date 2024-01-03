@@ -11,7 +11,6 @@ exports.login = (req, res) => {
             if (!user) {
                 res.redirect('/login');
             } else {
-                //bcrypt.compare(password, user.password, (err, result) => {
                     if (password == user.Password) {
                         req.session.loggedin = true;
                         req.session.user = user;
@@ -21,7 +20,6 @@ exports.login = (req, res) => {
                         const conflictError = 'User credentials are not valid!';
                         res.render('login', { email, password, conflictError });
                     }
-                //})
             }
         })
     } else {

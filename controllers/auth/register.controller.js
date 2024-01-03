@@ -18,7 +18,6 @@ exports.register = (req, res) => {
             }
         })
 
-        //bcrypt.hash(password, parseInt(process.env.BCRYPT_SALT_ROUND)).then((hashed) => {
             // Create a User
             const user = new User({
                 name: name,
@@ -30,7 +29,6 @@ exports.register = (req, res) => {
                     res.redirect('/login');
                 }
             })
-        //});
     } else {
         const conflictError = 'User credentials are exist.';
         res.render('login', { email, password, name, conflictError });

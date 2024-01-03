@@ -5,8 +5,7 @@ const authMiddleware = require('../middlewares/auth.middleware');
 
 module.exports = app => {
     router.get('/login', authMiddleware.isAuth, login.showLoginForm)
-    //.post('/login', login.login)
-
+    
     .post('/login', (req, res) => {
         const { email, password, name, phoneNumber, dob } = req.body;
         console.log(req.body);

@@ -1,12 +1,9 @@
 module.exports = app => {
     const router = require('express').Router();
     const sql = require('../models/database');
-    //const expressWs = require('express-ws');
+    const authMiddleware = require('../middlewares/auth.middleware.admin')
 
-    //expressWs(router);
-    //let clients = [];
-
-    router.get('/adminDoctors', async(req, res)=>{
+    router.get('/adminDoctors', authMiddleware.loggedin, async(req, res)=>{
         sql.query('SELECT * FROM staff', (err, results) => {
           const doctors = results;
           sql.query('SELECT COUNT(staff_id) AS staffCount FROM staff', (err, countResult) => {
@@ -57,23 +54,7 @@ module.exports = app => {
         }
       });
 
-    // router.ws('/ws', (ws, req) => {
-    //     clients.push(ws); // Store the WebSocket connection
-        
-    //     sql.query('SELECT * FROM staff', (err, results) => {
-    //         if (err) {
-    //           console.error('Error fetching doctors: ', err);
-    //           return;
-    //         }
-    //         ws.send(JSON.stringify(results));
-    //     });
-        
-    //     ws.on('close', () => {
-    //         clients = clients.filter((client) => client !== ws); // Remove closed WebSocket connections
-    //     });
-    // });
-
-    router.get('/adminAnalyst',(req,res)=>{
+    router.get('/adminAnalyst', authMiddleware.loggedin, (req,res)=>{
       sql.query('SELECT * FROM staff', (err, results) => {
         const doctors = results;
         sql.query('SELECT COUNT(staff_id) AS staffCount FROM staff', (err, countResult) => {
@@ -86,11 +67,11 @@ module.exports = app => {
       });  
     });
     
-    router.get('/adminDoctors/in4',(req,res)=>{
+    router.get('/adminDoctors/in4', authMiddleware.loggedin, (req,res)=>{
             res.render('adminDoctorIn4');
     });
 
-    router.get('/adminAppointment',(req,res)=>{
+    router.get('/adminAppointment', authMiddleware.loggedin, (req,res)=>{
       sql.query('SELECT * FROM staff', (err, results) => {
         const doctors = results;
         sql.query('SELECT COUNT(staff_id) AS staffCount FROM staff', (err, countResult) => {
@@ -103,7 +84,7 @@ module.exports = app => {
       });  
     });
 
-    router.get('/adminPatient',(req,res)=>{
+    router.get('/adminPatient', authMiddleware.loggedin, (req,res)=>{
       sql.query('SELECT * FROM patient', (err, results) => {
         const patients = results;
         sql.query('SELECT COUNT(staff_id) AS staffCount FROM staff', (err, countResult) => {
@@ -116,7 +97,7 @@ module.exports = app => {
       });  
     });
 
-    router.get('/adminPatient/in4', (req,res)=>{
+    router.get('/adminPatient/in4', authMiddleware.loggedin, (req, res)=>{
       res.render('adminPatientIn4');
     })
     
