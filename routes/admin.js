@@ -1,14 +1,15 @@
 module.exports = app => {
     const router = require('express').Router();
-    const sql = require('../models/database');
+    var config=require('../dbConfig');
+    const sql= require('msnodesqlv8');
     const authMiddleware = require('../middlewares/auth.middleware.admin')
 
     router.get('/adminDoctors', authMiddleware.loggedin, async(req, res)=>{
-        sql.query('SELECT * FROM staff', (err, results) => {
+        sql.query(config, 'SELECT * FROM staff', (err, results) => {
           const doctors = results;
-          sql.query('SELECT COUNT(staff_id) AS staffCount FROM staff', (err, countResult) => {
+          sql.query(config, 'SELECT COUNT(staff_id) AS staffCount FROM staff', (err, countResult) => {
             const staffCount = countResult[0].staffCount;
-            sql.query('SELECT COUNT(patient_id) AS patientCount FROM Patient', (err, countRes) =>{
+            sql.query(config, 'SELECT COUNT(patient_id) AS patientCount FROM Patient', (err, countRes) =>{
               const patientCount = countRes[0].patientCount;
               res.render('adminDoctors', { doctors, staffCount, patientCount });
             })
@@ -21,7 +22,7 @@ module.exports = app => {
         const { Name, Phone } = req.body;
         
         if (Name && Phone){
-            sql.query('INSERT INTO staff (Name, Phone) VALUES (?, ?)', [Name, Phone], (err, result) => {
+            sql.query(config, 'INSERT INTO staff (Name, Phone) VALUES (?, ?)', [Name, Phone], (err, result) => {
             if (err) {
                 console.error('Error adding doctor: ', err);
                 res.status(500).json({ error: 'Error adding doctor' });
@@ -39,7 +40,7 @@ module.exports = app => {
         // Check if the Staff_Id for removing the doctor is present
         if (Staff_Id) {
           // Remove the doctor from the database using Staff_Id
-          sql.query('DELETE FROM staff WHERE Staff_ID = ?', [Staff_Id], (err, result) => {
+          sql.query(config, 'DELETE FROM staff WHERE Staff_ID = ?', [Staff_Id], (err, result) => {
             if (err) {
               console.error('Error removing doctor: ', err);
               res.status(500).json({ error: 'Error removing doctor' });
@@ -55,11 +56,11 @@ module.exports = app => {
       });
 
     router.get('/adminAnalyst', authMiddleware.loggedin, (req,res)=>{
-      sql.query('SELECT * FROM staff', (err, results) => {
+      sql.query(config, 'SELECT * FROM staff', (err, results) => {
         const doctors = results;
-        sql.query('SELECT COUNT(staff_id) AS staffCount FROM staff', (err, countResult) => {
+        sql.query(config, 'SELECT COUNT(staff_id) AS staffCount FROM staff', (err, countResult) => {
           const staffCount = countResult[0].staffCount;
-          sql.query('SELECT COUNT(patient_id) AS patientCount FROM Patient', (err, countRes) =>{
+          sql.query(config, 'SELECT COUNT(patient_id) AS patientCount FROM Patient', (err, countRes) =>{
             const patientCount = countRes[0].patientCount;
             res.render('adminAnalyst', { doctors, staffCount, patientCount });
           })
@@ -72,11 +73,11 @@ module.exports = app => {
     });
 
     router.get('/adminAppointment', authMiddleware.loggedin, (req,res)=>{
-      sql.query('SELECT * FROM staff', (err, results) => {
+      sql.query(config, 'SELECT * FROM staff', (err, results) => {
         const doctors = results;
-        sql.query('SELECT COUNT(staff_id) AS staffCount FROM staff', (err, countResult) => {
+        sql.query(config, 'SELECT COUNT(staff_id) AS staffCount FROM staff', (err, countResult) => {
           const staffCount = countResult[0].staffCount;
-          sql.query('SELECT COUNT(patient_id) AS patientCount FROM Patient', (err, countRes) =>{
+          sql.query(config, 'SELECT COUNT(patient_id) AS patientCount FROM Patient', (err, countRes) =>{
             const patientCount = countRes[0].patientCount;
             res.render('adminAppointment', { doctors, staffCount, patientCount });
           })
@@ -85,11 +86,11 @@ module.exports = app => {
     });
 
     router.get('/adminPatient', authMiddleware.loggedin, (req,res)=>{
-      sql.query('SELECT * FROM patient', (err, results) => {
+      sql.query(config, 'SELECT * FROM patient', (err, results) => {
         const patients = results;
-        sql.query('SELECT COUNT(staff_id) AS staffCount FROM staff', (err, countResult) => {
+        sql.query(config, 'SELECT COUNT(staff_id) AS staffCount FROM staff', (err, countResult) => {
           const staffCount = countResult[0].staffCount;
-          sql.query('SELECT COUNT(patient_id) AS patientCount FROM Patient', (err, countRes) =>{
+          sql.query(config, 'SELECT COUNT(patient_id) AS patientCount FROM Patient', (err, countRes) =>{
             const patientCount = countRes[0].patientCount;
             res.render('adminPatient', { patients, staffCount, patientCount });
           })
