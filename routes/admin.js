@@ -1,18 +1,9 @@
 module.exports = app => {
     const router = require('express').Router();
     const sql = require('../models/database');
-<<<<<<< HEAD
     const authMiddleware = require('../middlewares/auth.middleware.admin')
 
     router.get('/adminDoctors', authMiddleware.loggedin, async(req, res)=>{
-=======
-    //const expressWs = require('express-ws');
-
-    //expressWs(router);
-    //let clients = [];
-
-    router.get('/adminDoctors', async(req, res)=>{
->>>>>>> cb456ea (Trying merge)
         sql.query('SELECT * FROM staff', (err, results) => {
           const doctors = results;
           sql.query('SELECT COUNT(staff_id) AS staffCount FROM staff', (err, countResult) => {
@@ -63,7 +54,6 @@ module.exports = app => {
         }
       });
 
-<<<<<<< HEAD
     router.get('/adminAnalyst', authMiddleware.loggedin, (req,res)=>{
       sql.query('SELECT * FROM staff', (err, results) => {
         const doctors = results;
@@ -110,31 +100,6 @@ module.exports = app => {
     router.get('/adminPatient/in4', authMiddleware.loggedin, (req, res)=>{
       res.render('adminPatientIn4');
     })
-=======
-    // router.ws('/ws', (ws, req) => {
-    //     clients.push(ws); // Store the WebSocket connection
-        
-    //     sql.query('SELECT * FROM staff', (err, results) => {
-    //         if (err) {
-    //           console.error('Error fetching doctors: ', err);
-    //           return;
-    //         }
-    //         ws.send(JSON.stringify(results));
-    //     });
-        
-    //     ws.on('close', () => {
-    //         clients = clients.filter((client) => client !== ws); // Remove closed WebSocket connections
-    //     });
-    // });
-
-    router.get('/adminAnalyst',(req,res)=>{
-        res.render('adminAnalyst');
-    });
-    
-    router.get('/adminDoctors/in4',(req,res)=>{
-            res.render('adminDoctorIn4');
-    });
->>>>>>> cb456ea (Trying merge)
     
     app.use(router);
 }

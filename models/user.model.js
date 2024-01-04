@@ -4,10 +4,7 @@ const User = function(user){
     this.name = user.name;
     this.password = user.password;
     this.email = user.email;
-<<<<<<< HEAD
     this.type_of_account = 1;
-=======
->>>>>>> cb456ea (Trying merge)
 };
 
 User.create = (newUser, result) => {
@@ -23,11 +20,7 @@ User.create = (newUser, result) => {
 };
 
 User.findByEmail = (email, result) => {
-<<<<<<< HEAD
     sql.query(`SELECT * from account WHERE email = '${email}' AND type_of_account = 1`, (err, res) => {
-=======
-    sql.query(`SELECT * from account WHERE email = '${email}'`, (err, res) => {
->>>>>>> cb456ea (Trying merge)
         if (err) {
             result(err, null);
             return;
