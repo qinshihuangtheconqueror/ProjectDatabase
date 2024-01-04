@@ -128,16 +128,6 @@
                 </button>
             </div>
             
-                <!-- Profile of doctor -->
-                    <!-- <div class ='doctor-details'>
-                        <div class ='doctor-details-img'> 
-                            <img src =>
-                        </div>
-                    </div> -->
-                <!-- Profile of doctor end -->
-
-
-            <!-- Youtube -->
             <div class="video" id = doctorInfo>
                 
             </div>
@@ -182,33 +172,88 @@
             </script>
 
             <script>
-                    document.getElementById('addDoctorButton').addEventListener('click', () => {
-                    const name = prompt('Enter doctor\'s name:');
-                    const phone = prompt('Enter doctor\'s phone number:');
+                    document.getElementById('doctorForm').addEventListener('submit', (event) => {
+                        event.preventDefault(); // Prevent the default form submission
+                        
+                        const name = document.getElementById('doctorName').value;
+                        const phone = document.getElementById('doctorPhone').value;
 
-                    if (name && phone) {
-                        const doctorData = { Name: name, Phone: phone };
+                        if (name && phone) {
+                            const doctorData = { Name: name, Phone: phone };
 
-                        fetch('/adminDoctors', {
-                            method: 'POST',
-                            headers: {
-                            'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify(doctorData),
-                        })
-                        .then((response) => {
-                            if (!response.ok) {
-                                throw new Error('Failed to add doctor');
-                            }
-                            window.location.reload()
-                        })
-                        .catch((error) => {
-                        console.error('Error adding doctor:', error);
-                        // Handle error scenario - show an error message, etc.
-                        });
-                    } else {
-                        alert('Doctor information is incomplete');
-                    }
+                            fetch('/adminDoctors', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(doctorData),
+                            })
+                            .then((response) => {
+                                if (!response.ok) {
+                                    throw new Error('Failed to add doctor');
+                                }
+                                window.location.reload();
+                            })
+                            .catch((error) => {
+                                console.error('Error adding doctor:', error);
+                                // Handle error scenario - show an error message, etc.
+                            });
+                        }
+                    });
+            </script>
+
+            <script>
+                document.getElementById('addDoctorButton').addEventListener('click', () => {
+                    const popup = window.open('', 'Add Doctor', 'width=400, height=300, top=100, left=100');
+                    const popupContent = `
+                        <html>
+                        <head>
+                            <title>Add Doctor</title>
+                        </head>
+                        <body>
+                            <h2>Add Doctor</h2>
+                            <form id="doctorForm">
+                                <label for="doctorName">Doctor's Name:</label>
+                                <input type="text" id="doctorName" name="doctorName"><br><br>
+                                
+                                <label for="doctorPhone">Doctor's Phone Number:</label>
+                                <input type="text" id="doctorPhone" name="doctorPhone"><br><br>
+                                
+                                <input type="submit" value="Submit">
+                            </form>
+                        </body>
+                        </html>
+                    `;
+                    popup.document.write(popupContent);
+
+                    popup.document.getElementById('doctorForm').addEventListener('submit', (event) => {
+                        event.preventDefault();
+                        
+                        const name = popup.document.getElementById('doctorName').value;
+                        const phone = popup.document.getElementById('doctorPhone').value;
+
+                        if (name && phone) {
+                            const doctorData = { Name: name, Phone: phone };
+
+                            fetch('/adminDoctors', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(doctorData),
+                            })
+                            .then((response) => {
+                                if (!response.ok) {
+                                    throw new Error('Failed to add doctor');
+                                }
+                                popup.close();
+                                window.location.reload();
+                            })
+                            .catch((error) => {
+                                console.error('Error adding doctor:', error);
+                            });
+                        }
+                    });
                 });
             </script>
             
