@@ -18,6 +18,10 @@ exports.register = (req, res) => {
             }
         })
 
+<<<<<<< HEAD
+=======
+        //bcrypt.hash(password, parseInt(process.env.BCRYPT_SALT_ROUND)).then((hashed) => {
+>>>>>>> cb456ea (Trying merge)
             // Create a User
             const user = new User({
                 name: name,
@@ -29,6 +33,10 @@ exports.register = (req, res) => {
                     res.redirect('/login');
                 }
             })
+<<<<<<< HEAD
+=======
+        //});
+>>>>>>> cb456ea (Trying merge)
     } else {
         const conflictError = 'User credentials are exist.';
         res.render('login', { email, password, name, conflictError });

@@ -1,5 +1,9 @@
 var router = require('express').Router();
 var authMiddleware = require('../middlewares/auth.middleware');
+<<<<<<< HEAD
+=======
+const login = require('../controllers/auth/login.controller');
+>>>>>>> cb456ea (Trying merge)
 
 module.exports = app => {
     router.get('/', (req, res) => {
@@ -10,6 +14,7 @@ module.exports = app => {
         res.render('home');
     });
     
+<<<<<<< HEAD
     router.get('/makeAppointment', (req, res) => {
         res.render('makeAppointment');
     })
@@ -22,5 +27,7 @@ module.exports = app => {
         res.render('patientSchedule');
     })
 
+=======
+>>>>>>> cb456ea (Trying merge)
     app.use(router);
 }

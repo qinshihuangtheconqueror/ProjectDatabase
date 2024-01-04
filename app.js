@@ -8,6 +8,16 @@ require('dotenv/config');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
 app.set('views', 'views');
+const express = require("express");
+const app = express();
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
+const session = require('express-session');
+require('dotenv/config');
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.set('view engine', 'ejs')
+app.set('views', 'views');
 app.use(express.static(__dirname+ '/public'));
 
 app.use(express.static('app/public'));
@@ -31,5 +41,6 @@ app.use(session({
 require('./routes/router')(app);
 
 app.listen(process.env.PORT, function(){
-    console.log(`Example app listening on port http://localhost:${process.env.PORT}`)
-});
+    console.log(`Example app listening on port ${process.env.PORT}`)
+  });
+// Duong new coding end
