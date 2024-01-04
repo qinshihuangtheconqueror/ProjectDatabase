@@ -144,40 +144,38 @@
                     if (Array.isArray(doctors)) {
                         doctors.forEach(doctor => {
                             doctorTemplate += `
-                        <div class="video-div">
-                            <a href="/adminPatient/in4">
-                                <div class="videoandtime">
-                                    <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
-                                </div>
-                            </a>
-                            <div class="video-description">
-                                <div class="video-description-child">
-                                    <div class="video-thumna ils">
-                                        <img class="logo-channel" src="/images/ava.jpg">
+                            <div class="video-div">
+                                <a href="/adminPatient/in4">
+                                    <div class="videoandtime">
+                                        <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
                                     </div>
-                                
-                                    <div class="video-info">
-                                        <p class="video-title">${doctor.Name}</p>
-                                        <p class="video-channel">${doctor.Phone}</p>
-                                        <p class="video-sub">${doctor.Staff_ID}</p>
+                                </a>
+                                <div class="video-description">
+                                    <div class="video-description-child">
+                                        <div class="video-thumna ils">
+                                            <img class="logo-channel" src="/images/ava.jpg">
+                                        </div>
+                                    
+                                        <div class="video-info">
+                                            <p class="video-title">${doctor.Name}</p>
+                                            <p class="video-channel">${doctor.Phone}</p>
+                                            <p class="video-sub">${doctor.Staff_ID}</p>
+                                        </div>
+                                    </div>
+                                    <div class="video-crud">
+                                        <a> 
+                                            <button id="modifyDoctorButton${doctor.Staff_ID}" class="video-crud-button" style="background-color: rgb(187, 247, 208);">
+                                                Modify
+                                            </button>
+                                        </a>
+                                        <a>
+                                            <button id="removeDoctorButton${doctor.Staff_ID}" class="video-crud-button" style="background-color: rgb(254, 205, 211);">
+                                                Remove
+                                            </button>
+                                        </a>
                                     </div>
                                 </div>
-                                <div class="video-crud">
-                                    <a href = "/adminPatient/test"> 
-                                        <button  class="video-crud-button" style="background-color: rgb(187, 247, 208);">
-                                            Modify
-                                        </button>
-                                    </a>
-                                    <a href = "/adminPatient/test">
-                                        <button  class="video-crud-button" style="background-color: rgb(254, 205, 211);">
-                                            Remove
-                                        </button>
-                                    </a>
-                                </div>
-                            </div>
-                    </div>
-                                
-                            `;
+                            </div>`;
                         });
                     } else {
                         console.error('Doctors data is not an array');
@@ -295,12 +293,47 @@
                       })
                       .catch((error) => {
                         console.error('Error removing doctor:', error);
-                        // Handle error scenario - show an error message, etc.
                       });
                   } else {
                     alert('Doctor information is incomplete');
                   }
                 });
+              </script>
+
+              <script>
+                function deleteDoctor(id) {
+                    const doctorData = { Staff_Id:id }
+                    fetch('/adminDoctors', {
+                      method: 'DELETE',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify(doctorData),
+                    })
+                    .then((response) => {
+                        if (!response.ok) {
+                        throw new Error('Failed to remove doctor');
+                        }
+                        window.location.reload()
+                    })
+                    .catch((error) => {
+                        console.error('Error removing doctor:', error);
+                    });
+                };
+
+                function attachEventListenersToRemoveButtons() {
+                    const doctorButtons = document.querySelectorAll('[id^="removeDoctorButton"]');
+                    doctorButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            const doctorId = button.id.replace('removeDoctorButton', ''); // Extract the doctor ID from the button ID
+                            const confirmDelete = confirm(`Are you sure you want to delete doctor with ID ${doctorId}?`);
+                            if (confirmDelete) {
+                                deleteDoctor(doctorId); // Call deleteDoctor function with the doctor's ID
+                            }
+                        });
+                    });
+                }          
+                window.addEventListener('load', attachEventListenersToRemoveButtons);          
               </script>
 
         </main>
