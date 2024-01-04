@@ -1,8 +1,4 @@
 const User = require('../../models/user.model');
-<<<<<<< HEAD
-=======
-const bcrypt = require('bcrypt');
->>>>>>> b766b3b1486b0b2df6ae8c8b1937e62a82f72a05
 
 exports.showLoginForm = (req, res) => {
     res.render('login');
