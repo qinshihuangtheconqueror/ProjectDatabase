@@ -1,5 +1,6 @@
 var router = require('express').Router();
 var authMiddleware = require('../middlewares/auth.middleware');
+const login = require('../controllers/auth/login.controller');
 
 module.exports = app => {
     router.get('/landingPage', (req, res) => {
@@ -10,17 +11,5 @@ module.exports = app => {
         res.render('home');
     });
     
-    router.get('/makeAppointment', (req, res) => {
-        res.render('makeAppointment');
-    })
-
-    router.get('/patientAppointment', (req, res) => {
-        res.render('patientAppointment');
-    })
-
-    router.get('/patientSchedule', (req, res) => {
-        res.render('patientSchedule');
-    })
-
     app.use(router);
 }

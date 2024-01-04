@@ -4,7 +4,10 @@ const User = function(user){
     this.name = user.name;
     this.password = user.password;
     this.email = user.email;
+<<<<<<< HEAD
     this.type_of_account = 1;
+=======
+>>>>>>> b766b3b1486b0b2df6ae8c8b1937e62a82f72a05
 };
 
 User.create = (newUser, result) => {
@@ -20,7 +23,11 @@ User.create = (newUser, result) => {
 };
 
 User.findByEmail = (email, result) => {
+<<<<<<< HEAD
     sql.query(`SELECT * from account WHERE email = '${email}' AND type_of_account = 1`, (err, res) => {
+=======
+    sql.query(`SELECT * from account WHERE email = '${email}'`, (err, res) => {
+>>>>>>> b766b3b1486b0b2df6ae8c8b1937e62a82f72a05
         if (err) {
             result(err, null);
             return;

@@ -1,4 +1,8 @@
 const User = require('../../models/user.model');
+<<<<<<< HEAD
+=======
+const bcrypt = require('bcrypt');
+>>>>>>> b766b3b1486b0b2df6ae8c8b1937e62a82f72a05
 
 exports.showLoginForm = (req, res) => {
     res.render('login');
@@ -11,6 +15,10 @@ exports.login = (req, res) => {
             if (!user) {
                 res.redirect('/login');
             } else {
+<<<<<<< HEAD
+=======
+                //bcrypt.compare(password, user.password, (err, result) => {
+>>>>>>> b766b3b1486b0b2df6ae8c8b1937e62a82f72a05
                     if (password == user.Password) {
                         req.session.loggedin = true;
                         req.session.user = user;
@@ -20,6 +28,10 @@ exports.login = (req, res) => {
                         const conflictError = 'User credentials are not valid!';
                         res.render('login', { email, password, conflictError });
                     }
+<<<<<<< HEAD
+=======
+                //})
+>>>>>>> b766b3b1486b0b2df6ae8c8b1937e62a82f72a05
             }
         })
     } else {

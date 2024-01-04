@@ -18,6 +18,10 @@ exports.register = (req, res) => {
             }
         })
 
+<<<<<<< HEAD
+=======
+        //bcrypt.hash(password, parseInt(process.env.BCRYPT_SALT_ROUND)).then((hashed) => {
+>>>>>>> b766b3b1486b0b2df6ae8c8b1937e62a82f72a05
             // Create a User
             const user = new User({
                 name: name,
@@ -29,6 +33,10 @@ exports.register = (req, res) => {
                     res.redirect('/login');
                 }
             })
+<<<<<<< HEAD
+=======
+        //});
+>>>>>>> b766b3b1486b0b2df6ae8c8b1937e62a82f72a05
     } else {
         const conflictError = 'User credentials are exist.';
         res.render('login', { email, password, name, conflictError });
