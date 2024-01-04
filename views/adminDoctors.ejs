@@ -137,30 +137,45 @@
                     const container = document.getElementById('doctorInfo');
                     container.innerHTML = ''; 
                     const doctors =  <%- JSON.stringify(doctors) %>;
-
+       
                     let doctorTemplate = '';
             
                     // Ensure doctors is an array before attempting to iterate
                     if (Array.isArray(doctors)) {
                         doctors.forEach(doctor => {
                             doctorTemplate += `
-                                <a href="/adminDoctors/in4">
-                                    <div class="video-div">
-                                        <div class="videoandtime">
-                                            <div class="video-video"><img class="thumnails" src="/images/doctor.png" ></div>
-                                        </div>
-                                        <div class="video-description">
-                                            <div class="video-thumnails">
-                                                <img class="logo-channel" src="/images/ava.jpg">
-                                            </div>
-                                            <div class="video-info">
-                                                <p class="video-title">${doctor.Name}</p>
-                                                <p class="video-channel">${doctor.Phone}</p>
-                                                <p class="video-sub">${doctor.Staff_ID}</p>
-                                            </div>
-                                        </div>
+                            <div class="video-div">
+                                <a href="/adminPatient/in4">
+                                    <div class="videoandtime">
+                                        <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
                                     </div>
                                 </a>
+                            <div class="video-description">
+                                <div class="video-description-child">
+                                    <div class="video-thumna ils">
+                                        <img class="logo-channel" src="/images/patient.jpg">
+                                    </div>
+                                    <div class="video-info">
+                                        <p class="video-title">${doctor.Name}</p>
+                                        <p class="video-channel">${doctor.Phone}</p>
+                                        <p class="video-sub">${doctor.Staff_ID}</p>
+                                    </div>
+                                </div>
+                                <div class="video-crud">
+                                    <a href = "/adminPatient/test"> 
+                                        <button  class="video-crud-button" style="background-color: rgb(187, 247, 208);">
+                                            Modify
+                                        </button>
+                                    </a>
+                                    <a href = "/adminPatient/test">
+                                        <button  class="video-crud-button" style="background-color: rgb(254, 205, 211);">
+                                            Remove
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                    </div>
+                                
                             `;
                         });
                     } else {
