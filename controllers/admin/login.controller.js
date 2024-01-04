@@ -12,7 +12,7 @@ exports.login = (req, res) => {
                 res.redirect('/adminLogin');
             } else {
                     if (password == admin.Password) {
-                        req.session.loggedin = true;
+                        req.session.loggedinAdmin = true;
                         req.session.admin = admin;
                         res.redirect('/adminDoctors');
                     } else {

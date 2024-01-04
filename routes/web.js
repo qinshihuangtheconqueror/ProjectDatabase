@@ -2,12 +2,22 @@ var router = require('express').Router();
 var authMiddleware = require('../middlewares/auth.middleware');
 
 module.exports = app => {
+
     router.get('/', (req, res) => {
         res.render('landingPage');
     });
 
+    router.get('/landingPage', (req, res) => {
+        res.render('landingPage');
+    });
+
     router.get('/home', authMiddleware.loggedin,(req, res) => {
-        res.render('home');
+        const user = req.session.user;
+        if (user) {
+            res.render('home', { user }); 
+        } else {
+            res.redirect('/login'); 
+        }
     });
     
     router.get('/makeAppointment', (req, res) => {
