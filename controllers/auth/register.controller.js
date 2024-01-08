@@ -26,7 +26,9 @@ exports.register = (req, res) => {
             });
             User.create(user, (err, user) => {
                 if (!err) {                    
-                    res.redirect('/login');
+                    res.redirect('/updateInfo');
+                } else {
+                    console.log(err);
                 }
             })
     } else {

@@ -7,12 +7,12 @@ module.exports = app => {
     router.get('/login', authMiddleware.isAuth, login.showLoginForm)
     
     .post('/login', (req, res) => {
-        const { email, password, name, phoneNumber, dob } = req.body;
+        const { email, password, name } = req.body;
         console.log(req.body);
 
         if (email && password && !name) {
             login.login(req, res); 
-        } else if (email && password && name && phoneNumber && dob) {
+        } else if (email && password && name ) {
             register.register(req, res); 
         }
     })
