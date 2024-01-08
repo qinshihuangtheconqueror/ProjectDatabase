@@ -1,5 +1,5 @@
 exports.loggedin = (req, res, next) => {
-    if (req.session.loggedin) {
+    if (req.session.loggedinAdmin) {
         res.locals.user = req.session.user
         next();
     } else {
@@ -8,7 +8,7 @@ exports.loggedin = (req, res, next) => {
 }
 
 exports.isAuth = (req, res, next) => {
-    if (req.session.loggedin) {
+    if (req.session.loggedinAdmin) {
         res.locals.user = req.session.user
         res.redirect('/adminDoctors');
     } else {

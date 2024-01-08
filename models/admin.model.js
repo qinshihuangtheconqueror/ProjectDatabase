@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 const sql = require("./database");
+=======
+var config=require('../dbConfig');
+const sql= require('msnodesqlv8');
+>>>>>>> huypart
 
 const admin = function(admin){
     this.name = admin.name;
@@ -7,7 +12,11 @@ const admin = function(admin){
 };
 
 admin.findByEmail = (email, result) => {
+<<<<<<< HEAD
     sql.query(`SELECT * from account WHERE email = '${email}' AND Type_Of_Account = 0`, (err, res) => {
+=======
+    sql.query(config, `SELECT * from account WHERE email = '${email}' AND Type_Of_Account = 0`, (err, res) => {
+>>>>>>> huypart
         if (err) {
             result(err, null);
             return;

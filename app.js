@@ -31,5 +31,10 @@ app.use(session({
 require('./routes/router')(app);
 
 app.listen(process.env.PORT, function(){
+<<<<<<< HEAD
     console.log(`Example app listening on port ${process.env.PORT}`)
   });
+=======
+    console.log(`Example app listening on port http://localhost:${process.env.PORT}`)
+});
+>>>>>>> huypart

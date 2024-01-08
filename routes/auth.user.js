@@ -7,6 +7,7 @@ module.exports = app => {
     router.get('/login', authMiddleware.isAuth, login.showLoginForm)
     
     .post('/login', (req, res) => {
+<<<<<<< HEAD
         const { email, password, name, phoneNumber, dob } = req.body;
         console.log(req.body);
 
@@ -18,6 +19,15 @@ module.exports = app => {
             // Signup logic if email, password, 'name', 'phoneNumber', and 'dob' are all present
             // Example: Using register.register function (replace this with your actual signup logic)
             register.register(req, res); // Assuming register.register handles signup process
+=======
+        const { email, password, name } = req.body;
+        console.log(req.body);
+
+        if (email && password && !name) {
+            login.login(req, res); 
+        } else if (email && password && name ) {
+            register.register(req, res); 
+>>>>>>> huypart
         }
     })
 

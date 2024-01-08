@@ -1,5 +1,8 @@
 const User = require('../../models/user.model');
+<<<<<<< HEAD
 const bcrypt = require('bcrypt');
+=======
+>>>>>>> huypart
 
 exports.showLoginForm = (req, res) => {
     res.render('login');
@@ -13,9 +16,9 @@ exports.login = (req, res) => {
                 res.redirect('/login');
             } else {
                     if (password == user.Password) {
-                        req.session.loggedin = true;
+                        req.session.loggedinUser = true;
                         req.session.user = user;
-                        res.redirect('/home');
+                        res.redirect('/patientSchedule');
                     } else {
                         // A user with that email address does not exists
                         const conflictError = 'User credentials are not valid!';
