@@ -33,3 +33,6 @@ require('./routes/router')(app);
 app.listen(process.env.PORT, function(){
     console.log(`Example app listening on port http://localhost:${process.env.PORT}`)
 });
+app.get('/addDotoc',function(req,res){
+    res.render('addDoctor')
+})
