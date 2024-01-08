@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Make Appointment Health Care</title>
+    <link rel="stylesheet" href="/css/makeAppointment.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="container">
+
+        <div class="title"> 
+        Make Appointment
+        </div>
+
+    <div class="content">
+      <form action="/makeAppointment" method="post">
+        <div class="user-details">
+
+          <div class="input-box">
+            <span class="details">Date Appointment</span>
+            <input type="date" name="Date" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Hour Appointment</span>
+            <select class="Select" name="Start_Hour" required>
+              <option value="" disabled selected>Select an hour</option>
+              <option value="7:00">7:00AM</option>
+              <option value="8:00">8:00AM</option>
+              <option value="9:00">9:00AM</option>
+              <option value="10:00">10:00AM</option>
+              <option value="11:00">11:00AM</option>
+              <option value="12:00PM">12:00PM</option>
+              <option value="1:00PM">1:00PM</option>
+              <option value="2:00PM">2:00PM</option>
+              <option value="3:00PM">3:00PM</option>
+              <option value="4:00PM">4:00PM</option>
+              <option value="5:00PM">5:00PM</option>
+              <option value="6:00PM">6:00PM</option>
+              <option value="7:00PM">7:00PM</option>
+              <option value="8:00PM">8:00PM</option>
+              <option value="9:00PM">9:00PM</option>
+              <option value="10:00PM">10:00PM</option>
+              <option value="11:00PM">11:00PM</option>
+              <option value="12:00">12:00AM</option>
+              <!-- Add more hours if needed -->
+            </select>
+          </div>
+          
+          <div class="input-box">
+            <span class="details">Service</span>
+            <select class ="Select" name="Service_ID" required>
+                <option value="" disabled selected>Select a service</option>
+                <option value="1">Emergency Care</option>
+                <option value="2">Radiology Services</option>
+                <option value="3">Surgical Procedures</option>
+                <option value="4">Maternity Care</option>
+                <option value="pharmacy">Pharmacy Services</option>
+                <option value="physical_therapy">Physical Therapy</option>
+                <option value="cardiology">Cardiology Services</option>
+                <!-- Add more services if needed -->
+              </select>
+          </div>
+          <div class="input-box">
+            <span class="details">Doctor</span>
+            <select class ="Select" name="Staff_ID" required>
+                <option value="" disabled selected>Select a doctor</option>
+                <option value="1">Nguyen Dinh Duong</option>
+                <option value="2">Le Hoang Huy</option>
+                <option value="3">Tran Viet Anh</option>
+                <option value="4">Nguyen Trong Minh Phuong</option>
+                <!-- Add more services if needed -->
+              </select>
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Register">
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
