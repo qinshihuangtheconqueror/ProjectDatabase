@@ -143,6 +143,8 @@
                     // Ensure doctors is an array before attempting to iterate
                     if (Array.isArray(doctors)) {
                         doctors.forEach(doctor => {
+                            const doctorDOB = (doctor.DOB) ? new Date(doctor.DOB).toISOString().split('T')[0] : ''; // Change the doctor's DOB into correct form
+                            const doctorGender = doctor.Gender === 'M' ? 'Male' : 'Female'; // Convert short form to long form
                             doctorTemplate += `
                             <div class="video-div">
                                 <a href="/adminPatient/in4">
@@ -158,8 +160,12 @@
                                     
                                         <div class="video-info">
                                             <p class="video-title">${doctor.Name}</p>
-                                            <p class="video-channel">${doctor.Phone}</p>
-                                            <p class="video-sub">${doctor.Staff_ID}</p>
+                                            <p class="video-sub">ID: ${doctor.Staff_ID}</p>
+                                            <p class="video-channel">Phone: ${doctor.Phone}</p>
+                                            <p class="video-sub">Salary: ${doctor.Salary}</p>
+                                            <p class="video-sub">Address: ${doctor.Address}</p>
+                                            <p class="video-sub">DOB: ${doctorDOB}</p>
+                                            <p class="video-sub">Gender: ${doctorGender}</p>
                                         </div>
                                     </div>
                                     <div class="video-crud">
@@ -218,88 +224,95 @@
 
             <script>
                 document.getElementById('addDoctorButton').addEventListener('click', () => {
-                    const popup = window.open('', 'Add Doctor', 'width=400, height=300, top=100, left=100');
-                    const popupContent = `
-                        <html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8">
-    <title> Make Appointment Health Care</title>
-    <link rel="stylesheet" href="/css/makeAppointment.css">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   </head>
-<body>
-  <div class="container">
-
-        <div class="title"> 
-        Add Doctor
-        </div>
-
-    <div class="content">
-      <form action="/makeAppointment" method="post">
-        <div class="user-details">
-
-          <div class="input-box">
-            <span class="details">Name</span>
-            <input type="text" placeholder="Enter Name" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Phone</span>
-            <input type="text" placeholder="Enter Phone" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Address</span>
-            <input type="text" placeholder="Enter Address" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Specialization</span>
-            <input type="text" placeholder="Enter Specialization" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Salary</span>
-            <input type="number" placeholder="Enter Salary" required>
-          </div>
-          <div class="input-box">
-            <span class="details">DOB</span>
-            <input type="date" required>
-          </div>
-          <div class="gender-details">
-            <input type="radio" name="gender" id="dot-1">
-            <input type="radio" name="gender" id="dot-2">
-            <input type="radio" name="gender" id="dot-3">
-            <span class="gender-title">Gender</span>
-            <div class="category">
-              <label for="dot-1">
-              <span class="dot one"></span>
-              <span class="gender">Male</span>
-            </label>
-            <label for="dot-2">
-              <span class="dot two"></span>
-              <span class="gender">Female</span>
-            </label>
-            </div>
-          </div>
-          
-        </div>
-        <div class="button">
-          <input type="submit" value="Add Doctor">
-        </div>
-      </form>
-    </div>
-  </div>
-
-</body>
-</html>
+                const popup = window.open('', 'Add Doctor', 'width=800, height=600, top=250, left=550');
+                const popupContent = `
+                    <html lang="en" dir="ltr">
+                    <head>
+                        <meta charset="UTF-8">
+                        <title> Make Appointment Health Care</title>
+                        <link rel="stylesheet" href="/css/makeAppointment.css">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    </head>
+                    <body>
+                        <div class="container">
+                            <div class="title"> 
+                                Add Doctor
+                            </div>
+                            <div class="content">
+                                <form id="doctorForm" action="/adminDoctors" method="post">
+                                    <div class="user-details">
+                                        <div class="input-box">
+                                            <span class="details">Name</span>
+                                            <input type="text" id="doctorNameInput" placeholder="Enter Name" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="details">Phone</span>
+                                            <input type="text" id="doctorPhoneInput" placeholder="Enter Phone" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="details">Address</span>
+                                            <input type="text" id="doctorAddressInput" placeholder="Enter Address" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="details">Specialization</span>
+                                            <input type="text" id="doctorSpecializationInput" placeholder="Enter Specialization" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="details">Salary</span>
+                                            <input type="number" id="doctorSalaryInput" placeholder="Enter Salary" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="details">DOB</span>
+                                            <input type="date" id="doctorDOBInput" required>
+                                        </div>
+                                        <div class="gender-details">
+                                            <input type="radio" name="gender" id="dot-1">
+                                            <input type="radio" name="gender" id="dot-2">
+                                            <span class="gender-title">Gender</span>
+                                            <div class="category">
+                                            <label for="dot-1">
+                                            <span class="dot one"></span>
+                                            <span class="gender">Male</span>
+                                            </label>
+                                            <label for="dot-2">
+                                            <span class="dot two"></span>
+                                            <span class="gender">Female</span>
+                                            </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="button">
+                                        <input type="submit" value="Add Doctor">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </body>
+                    </html>
                     `;
                     popup.document.write(popupContent);
 
                     popup.document.getElementById('doctorForm').addEventListener('submit', (event) => {
                         event.preventDefault();
                         
-                        const name = popup.document.getElementById('doctorName').value;
-                        const phone = popup.document.getElementById('doctorPhone').value;
+                        const name = popup.document.getElementById('doctorNameInput').value;
+                        const phone = popup.document.getElementById('doctorPhoneInput').value;
+                        const specialization = popup.document.getElementById('doctorSpecializationInput').value;
+                        const salary = popup.document.getElementById('doctorSalaryInput').value;
+                        const address = popup.document.getElementById('doctorAddressInput').value;
+                        const dob = popup.document.getElementById('doctorDOBInput').value;
+                        const genderRadios = popup.document.getElementsByName('gender');
+                        let gender = '';
+
+                        genderRadios.forEach((radio) => {
+                            if (radio.checked) {
+                                // Set 'M' for Male and 'F' for Female
+                                gender = radio.id === 'dot-1' ? 'M' : 'F';
+                            }
+                        });
 
                         if (name && phone) {
-                            const doctorData = { Name: name, Phone: phone };
+                            const doctorData = { Name: name, Phone: phone, Specialization:specialization, Salary:salary, Address: address, Gender: gender, DOB: dob };
 
                             fetch('/adminDoctors', {
                                 method: 'POST',

@@ -16,9 +16,9 @@ CREATE TABLE Specialization (
 CREATE TABLE staff (
     Staff_ID INT PRIMARY KEY IDENTITY,
     Name VARCHAR(255),
-    Specialization_ID INT,
-    Salary FLOAT,
-    Phone INT,
+    Specialization_ID float,
+    Salary INT,
+    Phone VARCHAR(11),
     Address VARCHAR(255),
     DOB DATE,
     Gender CHAR(1),
@@ -80,7 +80,7 @@ CREATE TABLE Appointment (
     Status VARCHAR(255),
     Created_At DATETIME,
     FOREIGN KEY (Patient_ID) REFERENCES Patient(Patient_ID),
-    FOREIGN KEY (Staff_ID) REFERENCES Account(Staff_ID),
+    FOREIGN KEY (Staff_ID) REFERENCES Staff(Staff_ID),
     FOREIGN KEY (Service_ID) REFERENCES Service(Service_ID),
     FOREIGN KEY (Room_ID) REFERENCES Room(Room_ID)
 );

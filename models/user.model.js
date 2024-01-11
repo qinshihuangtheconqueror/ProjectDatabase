@@ -9,8 +9,8 @@ const User = function(user){
 };
 
 User.create = (newUser, result) => {
-  sql.query(config, "INSERT INTO account (name, email, password, type_of_account) VALUES (?, ?, ?, ?)",
-    [newUser.name, newUser.email, newUser.password, newUser.type_of_account],
+  sql.query(config, "INSERT INTO account (email, password, type_of_account) VALUES (?, ?, ?)",
+    [newUser.email, newUser.password, newUser.type_of_account],
     (err, res) => {
       if (err) {
         console.log("error: ", err);

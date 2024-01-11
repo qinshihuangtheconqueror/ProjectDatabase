@@ -19,20 +19,23 @@ module.exports = app => {
 
     // Express route to handle adding a new doctor
     router.post('/adminDoctors', async (req, res) => {
-        const { Name, Phone } = req.body;
-        
-        if (Name && Phone){
-            sql.query(config, 'INSERT INTO staff (Name, Phone) VALUES (?, ?)', [Name, Phone], (err, result) => {
-            if (err) {
+        const { Name, Phone, Specialization, Salary, Address, DOB, Gender } = req.body;
+        sql.query(config, 'SELECT Specialization_ID FROM Specialization WHERE Specialization_Name = ?', [Specialization], (err, results) => {
+          const Specialization_ID = results[0].Specialization_ID;
+          console.log(req.body)
+          if (Name && Phone){
+            sql.query(config, 'INSERT INTO staff (Name, Salary, Phone, Address, DOB, Specialization_ID, Gender) VALUES (?, ?, ?, ?, ?, ?, ?)', [Name, Salary, Phone, Address, DOB, Specialization_ID, Gender], (err, result) => {
+              if (err) {
                 console.error('Error adding doctor: ', err);
                 res.status(500).json({ error: 'Error adding doctor' });
                 return;
-            }
-            // If the insertion was successful, you can send a success response
-            res.status(200).json({ message: 'Doctor added successfully' });
+              }
+              // If the insertion was successful, you can send a success response
+              res.status(200).json({ message: 'Doctor added successfully' });
             });
-        }
-    });
+          }
+        });        
+      });
 
     router.delete('/adminDoctors', async (req, res) => {
         const { Staff_Id } = req.body;
