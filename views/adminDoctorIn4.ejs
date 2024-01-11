@@ -77,6 +77,8 @@
                     </ul>
                 </div>
 
+            
+                
             </div>
             <div class="doctors">
                 <div class="doctors-first">
@@ -86,15 +88,15 @@
                     <div class="doctor-first-details ">
                         <div class ="details-box">
                             <p class="details-heading">Name</p>
-                            <p class="details-content">Nguyễn Đình Dương</p>
+                            <p class="details-content"><%= doctor.Name %></p>
                         </div>
                         <div class ="details-box">
                             <p class="details-heading">Hospital ID</p>
-                            <p class="details-content">20225966</p>
+                            <p class="details-content"><%= doctor.Staff_ID %></p>
                         </div>
                         <div class ="details-box">
                             <p class="details-heading">Major</p>
-                            <p class="details-content">Emergency</p>
+                            <p class="details-content"><%= doctor.Specialization_Name %></p>
                         </div>
                         <div class ="details-box">
                             <p class="details-heading">Degree</p>
@@ -109,15 +111,15 @@
                         </div>
                         <div class ="details-box">
                             <p class="details-heading">Name</p>
-                            <p class="details-content">Nguyễn Đình Dương</p>
+                            <p class="details-content"><%= doctor.Name %></p>
                         </div>
-                        <div class ="details-box">
+                        <div class="details-box">
                             <p class="details-heading">DOB</p>
-                            <p class="details-content">29/01/2004</p>
+                            <p class="details-content"><%= formattedDate %></p>
                         </div>
                         <div class ="details-box">
                             <p class="details-heading">Major</p>
-                            <p class="details-content">Emergency</p>
+                            <p class="details-content"><%= doctor.Specialization_Name %></p>
                         </div>
                         <div class ="details-box">
                             <p class="details-heading">Degree</p>
@@ -130,25 +132,15 @@
                         </div>
                         <div class ="details-box">
                             <p class="details-heading">Address</p>
-                            <p class="details-content">Hà Nội</p>
+                            <p class="details-content"><%= doctor.Address %></p>
                         </div>
                         <div class ="details-box">
                             <p class="details-heading">Phone</p>
-                            <p class="details-content">033666666666</p>
-                        </div>
-                        <div class ="details-box">
-                            <p class="details-heading">Facebook</p>
-                            <p class="details-content">link</p>
-                        </div>
-                        <div class ="details-box">
-                            <p class="details-heading">Linked</p>
-                            <p class="details-content">Link</p>
+                            <p class="details-content"><%= doctor.Phone %></p>
                         </div>
                     </div>
                 </div>
             </div>
-        
-
         
         </main>
 

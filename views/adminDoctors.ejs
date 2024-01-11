@@ -147,7 +147,7 @@
                             const doctorGender = doctor.Gender === 'M' ? 'Male' : 'Female'; // Convert short form to long form
                             doctorTemplate += `
                             <div class="video-div">
-                                <a href="/adminPatient/in4">
+                                <a href="/adminDoctors/${doctor.Staff_ID}">
                                     <div class="videoandtime">
                                         <div class="video-video"><img class="thumnails" src="/images/ava.jpg" ></div>
                                     </div>
@@ -161,11 +161,7 @@
                                         <div class="video-info">
                                             <p class="video-title">${doctor.Name}</p>
                                             <p class="video-sub">ID: ${doctor.Staff_ID}</p>
-                                            <p class="video-channel">Phone: ${doctor.Phone}</p>
-                                            <p class="video-sub">Salary: ${doctor.Salary}</p>
-                                            <p class="video-sub">Address: ${doctor.Address}</p>
-                                            <p class="video-sub">DOB: ${doctorDOB}</p>
-                                            <p class="video-sub">Gender: ${doctorGender}</p>
+                                            <p class="video-sub">${doctor.Specialization_Name}</p>
                                         </div>
                                     </div>
                                     <div class="video-crud">
@@ -216,7 +212,6 @@
                             })
                             .catch((error) => {
                                 console.error('Error adding doctor:', error);
-                                // Handle error scenario - show an error message, etc.
                             });
                         }
                     });
