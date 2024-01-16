@@ -9,7 +9,9 @@ const User = function(user){
 };
 
 User.create = (newUser, result) => {
-  sql.query(config, "INSERT INTO account (email, password, type_of_account) VALUES (?, ?, ?)",
+  sql.query(
+    config,
+    "INSERT INTO account (email, password, type_of_account) OUTPUT INSERTED.* VALUES (?, ?, ?)",
     [newUser.email, newUser.password, newUser.type_of_account],
     (err, res) => {
       if (err) {
@@ -17,8 +19,10 @@ User.create = (newUser, result) => {
         result(err, null);
         return;
       }
-      console.log("created user: ", { id: res.insertId, ...newUser });
-      result(null, { id: res.insertId, ...newUser });
+
+      // Trả về thông tin người dùng vừa tạo
+      console.log("created user: ", res[0]);
+      result(null, res[0]);
     }
   );
 };

@@ -7,33 +7,35 @@ exports.create = (req, res) => {
 }
 
 exports.register = (req, res) => {
-    const { email, password, name, phoneNumber, dob } = req.body;
+    const { email, password} = req.body;
 
-    if (email && password && name) {
+    if (email && password) {
         User.findByEmail(email, (err, user) => {
             if (err || user) {
                 // A user with that email address does not exists
                 const conflictError = 'User credentials are exist.';
-                res.render('login', { email, password, name, conflictError });
+                res.render('login', { email, password, conflictError });
             }
         })
 
             // Create a User
             const user = new User({
-                name: name,
                 email: email,
                 password: password
             });
             User.create(user, (err, user) => {
-                if (!err) {                    
-                    res.redirect('/updateInfo');
+                if (!err) {
+                    // console.log(user);
+                    req.session.loggedinUser = true;
+                    req.session.user = user;
+                    res.render('updateInfo');
                 } else {
                     console.log(err);
                 }
             })
     } else {
         const conflictError = 'User credentials are exist.';
-        res.render('login', { email, password, name, conflictError });
+        res.render('login', { email, password, conflictError });
     }
 }
 

@@ -16,7 +16,7 @@ CREATE TABLE Specialization (
 CREATE TABLE staff (
     Staff_ID INT PRIMARY KEY IDENTITY,
     Name VARCHAR(255),
-    Specialization_ID float,
+    Specialization_ID INT,
     Salary INT,
     Phone VARCHAR(11),
     Address VARCHAR(255),
@@ -36,12 +36,12 @@ CREATE TABLE Service (
 
 -- Create the Patient table
 CREATE TABLE Patient (
-    Patient_ID INT PRIMARY KEY,
+    Patient_ID INT PRIMARY KEY IDENTITY,
     Name VARCHAR(255),
-    Phone INT,
+    Phone VARCHAR(255),
     Address VARCHAR(255),
     DOB DATE,
-    Health_Insurance INT,
+    Health_Insurance VARCHAR(255),
     Gender CHAR(1),
 );
 
@@ -49,6 +49,7 @@ CREATE TABLE Patient (
 CREATE TABLE Account (
     Account_ID INT PRIMARY KEY IDENTITY,
     Email VARCHAR(100) UNIQUE,
+    Name VARCHAR(255),
     Password VARCHAR(50),
     Staff_ID INT,
     Patient_ID INT,
@@ -61,7 +62,7 @@ CREATE TABLE Account (
 CREATE TABLE Room (
     Room_ID INT PRIMARY KEY,
     Name VARCHAR(255),
-    Status INT,
+
     Type VARCHAR(255),
     Value INT
 );
@@ -78,9 +79,10 @@ CREATE TABLE Appointment (
     Room_ID INT,
     Payment VARCHAR(255),
     Status VARCHAR(255),
-    Created_At DATETIME,
+	Created_At TIMESTAMP,
     FOREIGN KEY (Patient_ID) REFERENCES Patient(Patient_ID),
-    FOREIGN KEY (Staff_ID) REFERENCES Staff(Staff_ID),
+    FOREIGN KEY (Staff_ID) REFERENCES staff(Staff_ID),
     FOREIGN KEY (Service_ID) REFERENCES Service(Service_ID),
     FOREIGN KEY (Room_ID) REFERENCES Room(Room_ID)
 );
+

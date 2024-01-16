@@ -1,7 +1,10 @@
 var router = require('express').Router();
 var authMiddleware = require('../middlewares/auth.middleware');
-const login = require('../controllers/auth/login.controller');
 const makeApponitment = require('../controllers/appointment.controller')
+const updateInfo = require('../controllers/patient.controller');
+var config = require('../dbConfig');
+const sql = require('msnodesqlv8');
+const utils = require('../utils/utils')
 
 module.exports = app => {
     router.get('/', (req, res) => {
@@ -15,37 +18,67 @@ module.exports = app => {
     router.get('/home', authMiddleware.loggedin, (req, res) => {
         const user = req.session.user;
         if (user) {
-            res.render('patientSchedule', { user }); 
+            res.render('home', { user });
         } else {
-            res.redirect('/login'); 
+            res.redirect('/login');
         }
     });
 
     router.get('/makeAppointment', authMiddleware.loggedin, (req, res) => {
-        res.render('makeAppointment');
+        const { service, doctor } = req.query
+        const currentDate = utils.getCurrentDate();
+        console.log(currentDate);
+        res.render('makeAppointment', { doctor, service, currentDate });
     })
 
-    app.post('/makeAppointment', (req, res) => {
+    router.post('/makeAppointment', (req, res) => {
         makeApponitment.makeApponitment(req, res);
-        // res.render('home', { user });
-
-      })
+    })
 
     router.get('/patientAppointment', authMiddleware.loggedin, (req, res) => {
-        res.render('patientAppointment');
+        const { service } = req.query
+        sql.query(config, "SELECT * FROM Service", (err, queryRes) => {
+            const services = queryRes || [];
+            var doctors = [];
+            if (service != undefined) {
+                sql.query(config, `SELECT * FROM staff ${service ? ` st
+                INNER JOIN Service s
+                ON st.Specialization_ID = s.Specialization_ID
+                WHERE s.Service_ID = ${service}` : ""}`, (err, results) => {
+                    doctors = results;
+                    res.render('patientAppointment', { doctors, services, service });
+                })
+            } else {
+                res.render('patientAppointment', { doctors, services, service });
+            }
+        });
     })
 
     router.get('/updateInfo', (req, res) => {
-        res.render('updateInfo');
+        res.render('updateInfo.ejs');
     })
 
     router.post('/updateInfo', (req, res) => {
-        res.redirect("/login");
+        updateInfo.updateInfo(req, res);
     })
 
     router.get('/patientSchedule', authMiddleware.loggedin, (req, res) => {
-        res.render('patientSchedule');
-    })    
-    
+        sql.query(config, `SELECT a.Date, a.Start_Hour, a.Status, s.Name as Service, t.Name as Doctor
+            FROM Appointment a 
+            INNER JOIN Patient p ON a.Patient_ID = p.Patient_ID AND p.Patient_ID = ?
+            INNER JOIN Service s ON a.Service_ID = s.Service_ID
+            INNER JOIN staff t ON t.Staff_ID = a.Staff_ID`,
+            [req.session.user.Patient_ID],
+            (err, results) => {
+                const appointments = results || [];
+                appointments.forEach(appointment => {
+                    appointment.Date = utils.formatDate(new Date(appointment.Date));
+                    appointment.Start_Hour = utils.formatHour(new Date(appointment.Start_Hour))
+                });
+                res.render('patientSchedule', { appointments });
+            })
+
+    })
+
     app.use(router);
 }

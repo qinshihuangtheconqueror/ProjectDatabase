@@ -134,76 +134,53 @@
                             <tr>
                                 <th>Patients</th>
                                 <th>Doctors</th>
-                                <th>Order Date</th>
+                                <th>Service</th>
+                                <th>Date</th>
                                 <th>Time</th>
                                 <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody >
-                            <tr>
-                                <td>
-                                    <img src="images/ava.jpg">
-                                    <p>John Doe</p>
-                                </td>
-                                <td>Duong</td>                           
-                                <td>14/08/2023</td>
-                                <td>10:00 AM</td>
-                                <td><span class="status completed">Completed</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="images/ava.jpg">
-                                    <p>John Doe</p>
-                                </td>
-                                <td>Duong</td>
-                                <td>14/08/2023</td>
-                                <td>8:00 AM</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="images/ava.jpg">
-                                    <p>John Doe</p>
-                                </td>
-                                <td>Duong</td>
-                                <td>14/08/2023</td>
-                                <td>16:00 AM</td>
-                                <td><span class="status process">Processing</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="images/ava.jpg">
-                                    <p>John Doe</p>
-                                </td>
-                                <td>Duong</td>
-                                <td>14/08/2023</td>
-                                <td>16:00 AM</td>
-                                <td><span class="status process">Processing</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="images/ava.jpg">
-                                    <p>John Doe</p>
-                                </td>
-                                <td>Duong</td>
-                                <td>14/08/2023</td>
-                                <td>16:00 AM</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-
-                        
+                            <% appointments.forEach(function(item) { %>
+                                <tr>
+                                    <td>
+                                        <img src="images/ava.jpg">
+                                        <p><%= item.Name %></p>
+                                    </td>
+                                    <td>Duong</td>
+                                    <td><%= item.Service %></td>
+                                    <td><%= item.Date %></td>
+                                    <td><%= item.Start_Hour %></td>
+                                    <td><span class="status <%= item.Status %>"><%= item.Status %></span></td>
+                                    <td class="action">
+                                        <% if(item.Status==="Pending") { %>
+                                            <form method="POST" action="/changeAppointmentStatus">
+                                                <input type="hidden" name="appointmentId" value="<%= item.Appointment_ID %>">
+                                                <input type="hidden" name="newStatus" value="Rejected">
+                                                <button type="submit" class="btnAction">Reject</button>
+                                            </form>
+                                            <form method="POST" action="/changeAppointmentStatus">
+                                                <input type="hidden" name="appointmentId" value="<%= item.Appointment_ID %>">
+                                                <input type="hidden" name="newStatus" value="Approved">
+                                                <button type="submit" class="btnAction approved">Approved</button>
+                                            </form>
+                                        <% } else if(item.Status==="Approved") { %>
+                                            <form method="POST" action="/changeAppointmentStatus">
+                                                <input type="hidden" name="appointmentId" value="<%= item.Appointment_ID %>">
+                                                <input type="hidden" name="newStatus" value="Completed">
+                                                <button type="submit" class="btnAction completed">Completed</button>
+                                            </form>
+                                        <% } %>
+                                    </td>
+                                </tr>
+                            <% }); %>
                         </tbody>
                     </table>
-                  
                 </div>
-
             </div>
-
         </main>
-
     </div>
-
     <script src="js/adminScript.js"></script>
 </body>
-
 </html>

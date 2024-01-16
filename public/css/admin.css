@@ -505,16 +505,20 @@ body{
     font-weight: 700;
 }
 
-.content main .bottom-data .orders table tr td .status.completed{
+.content main .bottom-data .orders table tr td .status.Completed{
     background: var(--success);
 }
 
-.content main .bottom-data .orders table tr td .status.process{
+.content main .bottom-data .orders table tr td .status.Approved{
     background: var(--primary);
 }
 
-.content main .bottom-data .orders table tr td .status.pending{
+.content main .bottom-data .orders table tr td .status.Pending{
     background: var(--warning);
+}
+
+.content main .bottom-data .orders table tr td .status.Rejected{
+    background: var(--danger);
 }
 
 .content main .bottom-data .reminders{
@@ -657,6 +661,32 @@ body{
     object-fit: cover;
 }
 
+.btnAction {
+    padding: 4px;
+    margin:0px 8px 0px 8px;
+    border-radius: 5px;
+    border: 0.4px solid gray;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+}
 
+.approved {
+    background-color: green;
+    color: #fff;
+    font-size:14px;
+    border:0px;
+    font-family: 'Poppins', sans-serif;
+}
 
+.completed {
+    background-color: var(--primary);
+    color: #fff;
+    font-size:14px;
+    border:0px;
+    font-family: 'Poppins', sans-serif;
+}
 
+.action {
+    display: flex;
+    gap:10px;
+}

@@ -121,75 +121,31 @@
                     <table >
                         <thead>
                             <tr>
-                                <th>Patients</th>
                                 <th>Doctors</th>
-                                <th>Order Date</th>
+                                <th>Service</th>
+                                <th>Date</th>
                                 <th>Time</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody >
-                            <tr>
-                                <td>
-                                    <img src="images/ava.jpg">
-                                    <p>John Doe</p>
-                                </td>
-                                <td>Duong</td>                           
-                                <td>14/08/2023</td>
-                                <td>10:00 AM</td>
-                                <td><span class="status completed">Completed</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="images/ava.jpg">
-                                    <p>John Doe</p>
-                                </td>
-                                <td>Duong</td>
-                                <td>14/08/2023</td>
-                                <td>8:00 AM</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="images/ava.jpg">
-                                    <p>John Doe</p>
-                                </td>
-                                <td>Duong</td>
-                                <td>14/08/2023</td>
-                                <td>16:00 AM</td>
-                                <td><span class="status process">Processing</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="images/ava.jpg">
-                                    <p>John Doe</p>
-                                </td>
-                                <td>Duong</td>
-                                <td>14/08/2023</td>
-                                <td>16:00 AM</td>
-                                <td><span class="status process">Processing</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="images/ava.jpg">
-                                    <p>John Doe</p>
-                                </td>
-                                <td>Duong</td>
-                                <td>14/08/2023</td>
-                                <td>16:00 AM</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-
-                        
+                            <% appointments.forEach(function(item) { %>
+                                <tr>
+                                    <td>
+                                        <img src="images/ava.jpg">
+                                        <span><%= item.Doctor %></span>  
+                                    </td>
+                                    <td><%= item.Service %></td>                         
+                                    <td><%= item.Date %></td>
+                                    <td><%= item.Start_Hour %></td>
+                                    <td><span class="status completed"><%= item.Status %></span></td>
+                                </tr>
+                            <% }); %>
                         </tbody>
                     </table>
-                  
                 </div>
-
             </div>
-
         </main>
-
     </div>
 
     <script src="js/adminScript.js"></script>
