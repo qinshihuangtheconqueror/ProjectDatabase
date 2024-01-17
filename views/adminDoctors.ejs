@@ -250,7 +250,12 @@
                                         </div>
                                         <div class="input-box">
                                             <span class="details">Specialization</span>
-                                            <input type="text" id="doctorSpecializationInput" placeholder="Enter Specialization" required>
+                                            <select class="Select" name="Choose specialization" id="doctorSpecializationInput" required>
+                                                <option disabled selected>Please select specialization</option>
+                                                <% specializations.forEach(function(item) { %>
+                                                    <option value="<%= item.Specialization_ID %>"><%= item.Specialization_Name %></option>
+                                                <% }); %>
+                                            </select>
                                         </div>
                                         <div class="input-box">
                                             <span class="details">Salary</span>
@@ -358,7 +363,7 @@
                     alert('Doctor information is incomplete');
                   }
                 });
-              </script>
+            </script>
 
               <script>
                 function deleteDoctor(id) {

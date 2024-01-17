@@ -19,28 +19,39 @@ module.exports = app => {
           const staffCount = countResult[0].staffCount;
           sql.query(config, 'SELECT COUNT(patient_id) AS patientCount FROM Patient', (err, countRes) =>{
             const patientCount = countRes[0].patientCount;
-            res.render('adminDoctors', { doctors, staffCount, patientCount });
+            sql.query(config, 'SELECT * FROM Specialization', (err, countResu) =>{
+              const specializations = countResu;
+              res.render('adminDoctors', { doctors, staffCount, patientCount, specializations });
+            });
           })
         });
     });
   });
+  
   router.post('/adminDoctors', async (req, res) => {
     const { Name, Phone, Specialization, Salary, Address, DOB, Gender } = req.body;
-    sql.query(config, 'SELECT Specialization_ID FROM Specialization WHERE Specialization_Name = ?', [Specialization], (err, results) => {
-      const Specialization_ID = results[0].Specialization_ID;
-      if (Name && Phone){
-        sql.query(config, 'INSERT INTO staff (Name, Salary, Phone, Address, DOB, Specialization_ID, Gender) VALUES (?, ?, ?, ?, ?, ?, ?)', [Name, Salary, Phone, Address, DOB, Specialization_ID, Gender], (err, result) => {
-          if (err) {
-            console.error('Error adding doctor: ', err);
-            res.status(500).json({ error: 'Error adding doctor' });
-            return;
-          }
-          // If the insertion was successful, you can send a success response
-          res.status(200).json({ message: 'Doctor added successfully' });
+
+    if (Name && Specialization) {
+        // Insert into staff table
+        sql.query(config, 'INSERT INTO staff (Name, Salary, Phone, Address, DOB, Specialization_ID, Gender) VALUES (?, ?, ?, ?, ?, ?, ?)', [Name, Salary, Phone, Address, DOB, Specialization, Gender], (err, result) => {
+
+            // Retrieve the last inserted Staff_ID
+            sql.query(config, 'SELECT TOP 1 Staff_ID FROM staff ORDER BY Staff_ID DESC;', (err, result) => {
+
+                const staffID = result[0].Staff_ID;
+                console.log(staffID);
+
+                // Construct email and insert into account table
+                const formattedName = Name.toLowerCase().replace(/\s+/g, '_');
+                const Email = `${formattedName}@gmail.com`;
+                sql.query(config, 'INSERT INTO account (Email, Name, Password, Staff_ID, Type_Of_Account) VALUES (?, ?, ?, ?, ?)', [Email, Name, 123456, staffID, 2], (err, result) => {
+                });
+            });
         });
-      }
-    });        
-  });
+    }
+});
+
+
   router.delete('/adminDoctors', async (req, res) => {
     const { Staff_Id } = req.body;
     
@@ -91,7 +102,16 @@ module.exports = app => {
           appointment.Date = utils.formatDate(new Date(appointment.Date));
           appointment.Start_Hour = utils.formatHour(new Date(appointment.Start_Hour))
         });
-        res.render('adminAppointment', { appointments });
+        sql.query(config, 'SELECT * FROM staff', (err, results) => {
+          const doctors = results;
+          sql.query(config, 'SELECT COUNT(staff_id) AS staffCount FROM staff', (err, countResult) => {
+            const staffCount = countResult[0].staffCount;
+            sql.query(config, 'SELECT COUNT(patient_id) AS patientCount FROM Patient', (err, countRes) =>{
+              const patientCount = countRes[0].patientCount;
+              res.render('adminAppointment', { appointments, doctors, staffCount, patientCount });
+            })
+          });
+        }); 
       });
   });
   router.get('/adminPatient', authMiddleware.loggedin, (req, res) => {
