@@ -119,11 +119,6 @@
                 </li>
             </ul>
             <!-- End of Insights -->
-            <div class = 'Doctors-Crud'>
-                <button class = 'Doctors-Crud-list' id="addDoctorButton" style="background-color: rgb(187, 247, 208);">
-                Insert Patient
-                </button>
-            </div>
 
             <!-- Youtube -->
             
@@ -143,20 +138,23 @@
                     if (Array.isArray(patients)) {
                         patients.forEach(patient => {
                             patientTemplate += `
-                                <a href="/adminDoctors/in4">
+                                <a href="/adminPatient/${patient.Patient_ID}">
                                     <div class="video-div">
                                         <div class="videoandtime">
                                             <div class="video-video"><img class="thumnails" src="/images/huanhoahong.gif" ></div>
                                         </div>
                                         <div class="video-description">
-                                            <div class="video-thumnails">
-                                                <img class="logo-channel" src="/images/huanhoahong.gif">
-                                            </div>
-                                            <div class="video-info">
-                                                <p class="video-title">${patient.Name}</p>
-                                                <p class="video-channel">${patient.Phone}</p>
-                                                <p class="video-sub">${patient.Patient_ID}</p>
-                                            </div>
+                                            <div class="video-description-child">
+                                        <div class="video-thumna ils">
+                                            <img class="logo-channel" src="/images/ava.jpg">
+                                        </div>
+                                    
+                                        <div class="video-info">
+                                            <p class="video-title">Name: ${patient.Name}</p>
+                                            <p class="video-sub">Phone: ${patient.Phone}</p>
+                                            <p class="video-sub">Patient ID: ${patient.Patient_ID}</p>
+                                        </div>
+                                    </div>
                                         </div>
                                     </div>
                                 </a>

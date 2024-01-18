@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -87,19 +85,19 @@
                     <div class="doctor-first-details ">
                         <div class ="details-box">
                             <p class="details-heading">Name</p>
-                            <p class="details-content">Nguyễn Đình Dương</p>
+                            <p class="details-content"><%= patient.Name %></p>
                         </div>
                         <div class ="details-box">
                             <p class="details-heading">Patient ID</p>
-                            <p class="details-content">1234567</p>
+                            <p class="details-content"><%= patient.Patient_ID %></p>
                         </div>
                         <div class ="details-box">
                             <p class="details-heading">Sex</p>
-                            <p class="details-content">Male</p>
+                            <p class="details-content"><%=patient.Gender === 'M' ? 'Male' : 'Female'%></p>
                         </div>
                         <div class ="details-box">
                             <p class="details-heading">DOB</p>
-                            <p class="details-content">29/01/2004</p>
+                            <p class="details-content"><%= formattedDate %></p>
                         </div>
                     </div>
                 </div>
@@ -110,23 +108,19 @@
                         </div>
                         <div class ="details-box">
                             <p class="details-heading">Name</p>
-                            <p class="details-content">Nguyễn Đình Dương</p>
+                            <p class="details-content"><%= patient.Name %></p>
                         </div>
                         <div class ="details-box">
                             <p class="details-heading">Sex</p>
-                            <p class="details-content">Male</p>
+                            <p class="details-content"><%=patient.Gender === 'M' ? 'Male' : 'Female'%></p>
                         </div>
                         <div class ="details-box">
                             <p class="details-heading">DOB</p>
-                            <p class="details-content">29/01/2004</p>
+                            <p class="details-content"><%= formattedDate %></p>
                         </div>
                         <div class ="details-box">
-                            <p class="details-heading">Major</p>
-                            <p class="details-content">Emergency</p>
-                        </div>
-                        <div class ="details-box">
-                            <p class="details-heading">Degree</p>
-                            <p class="details-content">Professor</p>
+                            <p class="details-heading">Health Insurance ID</p>
+                            <p class="details-content"><%= patient.Health_Insurance %></p>
                         </div>
                     </div>
                     <div class="doctor-first-details ">
@@ -147,7 +141,7 @@
                         </div>
                         <div class ="details-box">
                             <p class="details-heading">Medical history</p>
-                            <p class="details-content">Cardiology</p>
+                            <p class="details-content">Unknown</p>
                         </div>
                         <div class ="details-box">
                             <p class="details-heading">Notes</p>
@@ -160,19 +154,11 @@
                         </div>
                         <div class ="details-box">
                             <p class="details-heading">Address</p>
-                            <p class="details-content">Hà Nội</p>
+                            <p class="details-content"><%= patient.Address %></p>
                         </div>
                         <div class ="details-box">
                             <p class="details-heading">Phone</p>
-                            <p class="details-content">033666666666</p>
-                        </div>
-                        <div class ="details-box">
-                            <p class="details-heading">Facebook</p>
-                            <p class="details-content">link</p>
-                        </div>
-                        <div class ="details-box">
-                            <p class="details-heading">Linked</p>
-                            <p class="details-content">Link</p>
+                            <p class="details-content"><%= patient.Phone %></p>
                         </div>
                     </div>
                 </div>

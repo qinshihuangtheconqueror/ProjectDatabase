@@ -72,14 +72,6 @@ module.exports = app => {
       res.status(400).json({ error: 'Missing doctor ID' });
     }
   });
-  router.post('/adminDoctors/in4', authMiddleware.loggedin, (req, res) => {
-    const { doctorId } = req.body;
-    let doctor;
-    sql.query(config, 'SELECT * FROM staff WHERE Staff_ID = ?', [doctorId] ,(err, result) => {
-      doctor = result;
-    });
-    res.render('adminDoctorIn4', { doctor });
-});  
     
   router.get('/adminAnalyst', authMiddleware.loggedin, (req,res)=>{
     sql.query(config, 'SELECT * FROM staff', (err, results) => {
@@ -115,8 +107,16 @@ module.exports = app => {
       });
   });
   router.get('/adminPatient', authMiddleware.loggedin, (req, res) => {
+    //sql.query(config, 'SELECT * FROM staff JOIN specialization ON staff.specialization_id = specialization.specialization_id', (err, results) => {      sql.query(config, 'SELECT * FROM staff JOIN specialization ON staff.specialization_id = specialization.specialization_id', (err, results) => {
     sql.query(config, 'SELECT * FROM patient', (err, results) => {
       const patients = results;
+      patients.forEach(patient => {
+        router.get(`/adminPatient/${patient.Patient_ID}`, authMiddleware.loggedin, (req, res) => {
+          const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+          const formattedDate = new Date(patient.DOB).toLocaleDateString('en-GB', options);
+          res.render('adminPatientIn4', { patient, formattedDate });
+        });
+      });
       sql.query(config, 'SELECT COUNT(staff_id) AS staffCount FROM staff', (err, countResult) => {
         const staffCount = countResult[0].staffCount;
         sql.query(config, 'SELECT COUNT(patient_id) AS patientCount FROM Patient', (err, countRes) => {
@@ -126,9 +126,7 @@ module.exports = app => {
       });
     });
   });
-  router.get('/adminPatient/in4', authMiddleware.loggedin, (req, res) => {
-    res.render('adminPatientIn4');
-  })
+
   router.post('/changeAppointmentStatus', (req, res) => {
     console.log(req.body.newStatus, req.body.appointmentId);
     sql.query(config, 'UPDATE Appointment SET Status = ? WHERE Appointment_ID = ?;', [req.body.newStatus, req.body.appointmentId], (err, results) => {
