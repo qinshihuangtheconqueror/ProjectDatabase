@@ -15,15 +15,6 @@ module.exports = app => {
         res.render('landingPage');
     });
 
-    router.get('/home', authMiddleware.loggedin, (req, res) => {
-        const user = req.session.user;
-        if (user) {
-            res.render('home', { user });
-        } else {
-            res.redirect('/login');
-        }
-    });
-
     router.get('/makeAppointment', authMiddleware.loggedin, (req, res) => {
         const { service, doctor } = req.query
         const currentDate = utils.getCurrentDate();

@@ -10,7 +10,7 @@ exports.loggedin = (req, res, next) => {
 exports.isAuth = (req, res, next) => {
     if (req.session.loggedinUser) {
         res.locals.user = req.session.user
-        res.redirect('/home');
+        res.redirect('/patientSchedule');
     } else {
         next();
     }
