@@ -15,15 +15,6 @@ module.exports = app => {
         res.render('landingPage');
     });
 
-    router.get('/home', authMiddleware.loggedin, (req, res) => {
-        const user = req.session.user;
-        if (user) {
-            res.render('home', { user });
-        } else {
-            res.redirect('/login');
-        }
-    });
-
     router.get('/makeAppointment', authMiddleware.loggedin, (req, res) => {
         const { service, doctor } = req.query
         const currentDate = utils.getCurrentDate();
@@ -78,6 +69,23 @@ module.exports = app => {
                 res.render('patientSchedule', { appointments });
             })
 
+    })
+
+    router.get('/getRoom', (req, res) => {
+        const { Date, Start_Hour } = req.query
+        console.log(Date, Start_Hour);
+        sql.query(config, `SELECT Room.Room_ID, Room.Name
+        FROM Room
+        WHERE NOT EXISTS (
+            SELECT 1
+            FROM Appointment
+            WHERE Room.Room_ID = Appointment.Room_ID
+            AND Date = ?
+            AND Start_Hour = ?
+        )`,[Date, Start_Hour] , (err, results) => {
+            console.log(results);
+            res.send(results)
+        })
     })
 
     app.use(router);

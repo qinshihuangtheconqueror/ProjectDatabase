@@ -64,18 +64,15 @@
         <main>
             <div class="header">
                 <div class="left">
-                    <h1>Dashboard</h1>
+                    <h1>Appointment management</h1>
                     <ul class="breadcrumb">
-                        <li><a href="#">
+                        <li>
+                            <a href="#">
                                 Appointment
-                            </a></li>
-
+                            </a>
+                        </li>
                     </ul>
                 </div>
-                <!-- <a href="#" class="report">
-                    <i class='bx bx-cloud-download'></i>
-                    <span>Download CSV</span>
-                </a> -->
             </div>
 
             <!-- Insights -->
@@ -85,7 +82,7 @@
                     <iconify-icon icon="healthicons:doctor" class='bx' width = '50' height = '50'></iconify-icon>
                     <span class="info">
                         <h3>
-                            69
+                            <%- JSON.stringify(staffCount) %>
                         </h3>
                         <p>Doctors</p>
                     </span>
@@ -94,7 +91,7 @@
                     <iconify-icon icon="guidance:in-patient" width="50" height="50"  class='bx' ></iconify-icon>
                     <span class="info">
                         <h3>
-                            6,999
+                            <%- JSON.stringify(patientCount) %>
                         </h3>
                         <p>Patients</p>
                     </span>
@@ -103,7 +100,7 @@
                     <iconify-icon icon="maki:doctor" width="50" height="50" class ='bx'></iconify-icon>
                     <span class="info">
                         <h3>
-                            56
+                            <%- JSON.stringify(attend) %>
                         </h3>
                         <p>Attend</p>
                     </span>
@@ -112,7 +109,7 @@
                     <iconify-icon icon="tabler:heart-rate-monitor" width="50" height="50" class ='bx'></iconify-icon>
                     <span class="info">
                         <h3>
-                            123
+                            <%- JSON.stringify(pendingAppointment) %>
                         </h3>
                         <p>Pending</p>
                     </span>
@@ -146,9 +143,9 @@
                                 <tr>
                                     <td>
                                         <img src="images/ava.jpg">
-                                        <p><%= item.Name %></p>
+                                        <p><%= item.Patient %></p>
                                     </td>
-                                    <td>Duong</td>
+                                    <td><%= item.Staff %></td>
                                     <td><%= item.Service %></td>
                                     <td><%= item.Date %></td>
                                     <td><%= item.Start_Hour %></td>

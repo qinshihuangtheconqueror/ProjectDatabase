@@ -13,6 +13,7 @@ exports.login = (req, res) => {
             } else {
                     if (password == user.Password) {
                         req.session.loggedinUser = true;
+                        req.session.loggedinAdmin = false;
                         req.session.user = user;
                         res.redirect('/patientSchedule');
                     } else {
