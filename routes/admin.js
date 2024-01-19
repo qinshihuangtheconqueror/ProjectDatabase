@@ -96,10 +96,10 @@ module.exports = app => {
     });
   });
   router.get('/adminAppointment', authMiddleware.loggedin, (req, res) => {
-    sql.query(config, `SELECT a.Appointment_ID, a.Date, a.Start_Hour, a.Status, p.Name as Patient, s.Name as Service, st.Name as Staff FROM Appointment a 
+    sql.query(config, `SELECT a.Appointment_ID, a.Date, a.Start_Hour, a.Status, a.Created_At, p.Name as Patient, s.Name as Service, st.Name as Staff FROM Appointment a 
     LEFT JOIN Patient p ON a.Patient_ID = p.Patient_ID 
     JOIN staff st ON a.Staff_ID = st.Staff_ID 
-    JOIN Service s ON a.Service_ID = s.Service_ID;`,
+    JOIN Service s ON a.Service_ID = s.Service_ID ORDER BY a.Created_At DESC;`,
       (err, results) => {
         const appointments = results || [];
         appointments.forEach(appointment => {
@@ -145,13 +145,14 @@ module.exports = app => {
     });
   });
   router.post('/changeAppointmentStatus', (req, res) => {
-    console.log(req.body.newStatus, req.body.appointmentId);
+    console.log("Demo >> ",req.body.newStatus, req.body.appointmentId);
     if (req.body.newStatus === "Approved") {
       sql.query(config, 'SELECT * FROM Appointment a INNER JOIN Room r ON a.Room_ID = r.Room_ID WHERE Appointment_ID = ?;', [req.body.appointmentId], (err, appointment) => {
         const a = appointment[0];
-        sql.query(config, 'SELECT * FROM staff WHERE Staff_ID = ?;', [a.Staff_ID], (err, staff) => {
-          console.log(staff[0]);
-          const s = staff[0];
+        console.log(a);
+        sql.query(config, 'SELECT * FROM Account WHERE Staff_ID = ?;', [a.Staff_ID], (err, account) => {
+          console.log(account[0]);
+          const accountStaff = account[0];
           console.log("email use >> ",process.env.EMAIL_USER);
           console.log("email pass >> ",process.env.EMAIL_PASS);
           const transporter = nodemailer.createTransport({
@@ -165,7 +166,7 @@ module.exports = app => {
           // Define the email options
           const mailOptions = {
             from: '13charlottekatakuri@gmail.com',
-            to: s.Email,
+            to: accountStaff.Email,
             subject: 'Your upcoming appointment',
             text: `You have an appointment on ${utils.formatDate(a.Date)} at ${utils.formatHour(a.Start_Hour)} in room ${a.Name}`,
           };
