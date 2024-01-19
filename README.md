@@ -6,7 +6,7 @@ In today's era, one of the significant challenges that patients often face is th
 ## Overview
 
 ### Database Schema
-![Architecture]()
+![Architecture](https://github.com/qinshihuangtheconqueror/ProjectDatabase/blob/finalHUy/ERD%20hospital.png)
 
 ### Technical Specifications
 * Frontend: EJS, CSS, Javascript
