@@ -31,7 +31,7 @@ module.exports = app => {
   });
 
   router.post('/adminDoctors', async (req, res) => {
-    const { Name, Phone, Specialization, Salary, Address, DOB, Gender } = req.body;
+    const { Name, Phone, Specialization, Salary, Address, Gender, DOB } = req.body;
 
     if (Name && Specialization) {
       // Insert into staff table
@@ -46,8 +46,18 @@ module.exports = app => {
           // Construct email and insert into account table
           const formattedName = Name.toLowerCase().replace(/\s+/g, '_');
           const Email = `${formattedName}@gmail.com`;
-          sql.query(config, 'INSERT INTO account (Email, Name, Password, Staff_ID, Type_Of_Account) VALUES (?, ?, ?, ?, ?)', [Email, Name, 123456, staffID, 2], (err, result) => {
-          });
+          console.log(Email);
+          sql.query(config, 'INSERT INTO account (Email, Password, Staff_ID, Type_Of_Account) VALUES (?, ?, ?, ?)', [Email, '123456', staffID, 2], (err, result) => {
+            if (err) {
+                console.error("Error inserting into account table:", err);
+                // Handle the error, e.g., send an error response to the client
+                return res.status(500).json({ error: "Internal Server Error" });
+            }
+        
+            // Query was successful, you can proceed with other tasks or send a success response
+            console.log("Account record inserted successfully");
+            res.status(200).json({ message: "Account created successfully" });
+        });
         });
       });
     }
