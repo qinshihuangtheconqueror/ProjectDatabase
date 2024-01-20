@@ -22,8 +22,9 @@ CREATE TABLE staff (
     Address VARCHAR(255),
     DOB DATE,
     Gender CHAR(1),
-    FOREIGN KEY (Specialization_ID) REFERENCES Specialization(Specialization_ID)
+    FOREIGN KEY (Specialization_ID) REFERENCES Specialization(Specialization_ID) ON DELETE CASCADE
 );
+
 
 -- Create the Service table
 CREATE TABLE Service (
@@ -244,7 +245,7 @@ VALUES
 (117, 'Rheumatoid Arthritis Treatment', 170, 18),
 (118, 'Bone Marrow Biopsy', 230, 19),
 (119, 'Allergy Testing', 110, 20);
-
+SELECT * FROM Patient
 -- Patient Table
 INSERT INTO Patient (Name, Phone, Address, DOB, Health_Insurance, Gender)
 VALUES
@@ -306,7 +307,7 @@ VALUES
 ('elijah.baker@example.com', 'elijahpass456', NULL, 18, 1),
 ('aria.murphy@example.com', 'ariapass789', 19, NULL, 2),
 ('grayson.rivera@example.com', 'graysonpass123', NULL, 20, 1),
-('langcochiquy@gmail.com', '1', 26, NULL, 2);
+('langcochiquy@gmail.com', '1', 24, NULL, 2);
 
 -- Room Table
 INSERT INTO Room (Room_ID, Name, Type, Value)
