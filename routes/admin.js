@@ -56,19 +56,24 @@ module.exports = app => {
 
   router.delete('/adminDoctors', async (req, res) => {
     const { Staff_Id } = req.body;
-
+    
     // Check if the Staff_Id for removing the doctor is present
     if (Staff_Id) {
       // Remove the doctor from the database using Staff_Id
-      sql.query(config, 'DELETE FROM staff WHERE Staff_ID = ?', [Staff_Id], (err, result) => {
-        if (err) {
-          console.error('Error removing doctor: ', err);
-          res.status(500).json({ error: 'Error removing doctor' });
-          return;
-        }
-        // If the deletion was successful, send a success response
-        res.status(200).json({ message: 'Doctor removed successfully' });
+      sql.query(config, ' DELETE FROM Appointment WHERE Staff_ID = ?', [Staff_Id], (err, result) => {
+        sql.query(config, 'DELETE FROM Account WHERE Staff_ID = ?', [Staff_Id], (err, result) => {
+          sql.query(config,'DELETE FROM staff WHERE Staff_ID = ?', [Staff_Id], (err, result) =>{
+            if (err) {
+              console.error('Error removing doctor: ', err);
+              res.status(500).json({ error: 'Error removing doctor' });
+              return;
+            }
+            // If the deletion was successful, send a success response
+            res.status(200).json({ message: 'Doctor removed successfully' });
+          })
       });
+    }
+    );
     } else {
       // If Staff_Id is missing, respond with an error
       res.status(400).json({ error: 'Missing doctor ID' });
