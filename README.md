@@ -1,7 +1,7 @@
 # Database Lab (IT3290E) Final Project - ICT K67 - HUST
 
 # Hospital Appointment Bookking Website 
-In today's era, one of the significant challenges that patients often face is the process of queuing up and scheduling medical appointments. This not only consumes a considerable amount of time and effort for the patients but also introduces uncertainty in securing desired appointment slots. Then, ưe introduce a modern solution to alleviate the burden on patients through the Electronic Appointment Booking System. 
+In today's era, one of the significant challenges that patients often face is the process of queuing up and scheduling medical appointments. This not only consumes a considerable amount of time and effort for the patients but also introduces uncertainty in securing desired appointment slots. Then, we introduce a modern solution to alleviate the burden on patients through the Electronic Appointment Booking System. 
 
 ## Overview
 
